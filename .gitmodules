@@ -1,0 +1,3 @@
+[submodule "csv_to_json_mapping"]
+	path = csv_to_json_mapping
+	url = https://gitlab.com/FieldWorker/csv_to_json_mapping.git
