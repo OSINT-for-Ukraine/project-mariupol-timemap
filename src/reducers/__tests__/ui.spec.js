@@ -1,25 +1,24 @@
-import { toggleSatelliteView } from "../../actions";
-import initial from "../../store/initial.js";
+import { toggleTileOverlay } from "../../actions";
+import initial from "../../store/initial";
 import ui from "../ui";
+import config from "../../../config";
 
 describe("UI reducer", () => {
-  describe("toggleSatelliteView", () => {
-    it("switches to satellite view if not currently enabled", () => {
-      const result = ui(initial.ui, toggleSatelliteView());
-      expect(result.tiles.current).toEqual("satellite");
-      expect(result.tiles.default).toEqual(initial.ui.tiles.default);
-    });
+  it("can change the tiling", () => {
+    const result = ui(initial.ui, toggleTileOverlay());
+    expect(result.tiles.current).toEqual(initial.ui.tiles.satellite);
+    expect(result.tiles.default).toEqual(initial.ui.tiles.default);
+  });
 
-    it("switches back to the default state if the satellite view is currently active", () => {
-      const result = ui(
-        {
-          ...initial.ui,
-          tiles: { default: "some default", current: "satellite" },
-        },
-        toggleSatelliteView()
-      );
-      expect(result.tiles.current).toEqual("some default");
-      expect(result.tiles.default).toEqual("some default");
-    });
+  it("can revert to the default tiling", () => {
+    const result = ui(
+      {
+        ...initial.ui,
+        tiles: { default: "some default", current: "something else" },
+      },
+      toggleTileOverlay()
+    );
+    expect(result.tiles.current).toBeUndefined();
+    expect(result.tiles.default).toEqual("some default");
   });
 });

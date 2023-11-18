@@ -40,7 +40,9 @@ export const getTimelineDimensions = (state) => state.app.timeline.dimensions;
 export const selectNarrative = (state) => state.app.associations.narrative;
 export const getFeatures = (state) => state.features;
 export const getEventRadius = (state) => state.ui.eventRadius;
-export const getTiles = (state) => state.ui.tiles.current;
+export const getTile = (state) => state.ui.tiles.current;
+export const isUsingSatellite = (state) =>
+  state.ui.tiles.current === state.ui.tiles.satellite;
 
 export const selectSites = createSelector(
   [getSites, getFeatures],
@@ -68,6 +70,36 @@ export const selectRegions = createSelector(
   }
 );
 
+const getInitialTimeRange = (state) => state.app.timeline.range.initial;
+const getInitialDaysShown = (state) =>
+  state.app.timeline.range.initialDaysShown;
+export const selectTimeRange = createSelector(
+  [getTimeRange, getInitialTimeRange, getInitialDaysShown],
+  (range, initialRange, initialDaysShown) => {
+    let start, end;
+    range = range.current;
+
+    if (Array.isArray(range) && range.length === 2) {
+      [start, end] = range;
+    } else if (Array.isArray(initialRange) && initialRange.length === 2) {
+      [start, end] = initialRange;
+    } else {
+      end = new Date();
+      start = new Date(end.getTime() - initialDaysShown * 24 * 60 * 60 * 1000);
+    }
+
+    return [new Date(start), new Date(end)];
+  }
+);
+
+const getTimeRangeLimits = (state) => state.app.timeline.range.limits;
+export const selectTimeRangeLimits = createSelector(
+  getTimeRangeLimits,
+  (limits) => {
+    return [new Date(limits.lower), new Date(limits.upper || Date.now())];
+  }
+);
+
 /**
  * Of all available events, selects those that
  * 1. fall in time range
@@ -80,7 +112,7 @@ export const selectEvents = createSelector(
     getActiveFilters,
     getActiveCategories,
     getActiveShapes,
-    getTimeRange,
+    selectTimeRange,
     getFeatures,
   ],
   (
@@ -130,16 +162,12 @@ export const selectEvents = createSelector(
 );
 
 /**
- * Of all available events, select only those that fall within the currently selected time range and have a location attached.
+ * Of all available events, select only those that fall within the currently selected time range.
  * Since `events` is a sparse array, we need to reduce the array in order to count.
  */
 export const selectEventCountInTimeRange = createSelector(
   [selectEvents],
-  (events, timeRange) =>
-    events.reduce(
-      (acc, curr) => (curr.latitude && curr.longitude ? acc + 1 : acc),
-      0
-    )
+  (events, timeRange) => events.reduce((acc) => acc + 1, 0)
 );
 
 /**

@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <title>TimeMap - Forensic Architecture</title>
-    <link
-      rel="stylesheet"
-      href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css"
-    />
-    <!-- <link -->
-    <!--   href="https://fonts.googleapis.com/css?family=Lato" -->
-    <!--   rel="stylesheet" -->
-    <!-- /> -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
+    <title>Civilian Harm in Ukraine</title>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css" />
+    <meta name="Description" CONTENT="This map plots out and highlights incidents that have resulted in potential civilian impact or harm since Russia began its invasion of Ukraine. The incidents detailed have been collected by Bellingcat researchers. Included in the map are instances where civilian areas and infrastructure have been damaged or destroyed, where the presence of civilian injuries are visible and/or there is the presence of immobile civilian bodies. Collection for the incidences contained in this map began on February 24, 2022. Users can explore incidents by date and location. We intend this to be a living project that will continue to be updated as long as the conflict persists. For more detailed information about the entries included in this map, please refer to our methodology and explainer article.">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script defer data-domain="ukraine.bellingcat.com" src="https://plausible.io/js/script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
     <style>
-      @media (hover: none) {
-        #id {
-          display: none;
+        @media (hover: none) {
+            #id {
+                display: none;
+            }
+
+            #nodisplay {
+                display: block;
+            }
         }
-        #nodisplay {
-          display: block;
+
+        @media (hover: hover) {
+            #nodisplay {
+                display: none;
+            }
         }
-      }
-      @media (hover: hover) {
-        #nodisplay {
-          display: none;
-        }
-      }
     </style>
     <div class="page">
-      <div class="page">
-        <div id="explore-app"></div>
-      </div>
-      <div id="nodisplay">
-        This platform is unsuitable for mobile. Please revisit on a desktop.
-      </div>
+        <div class="page">
+            <div id="explore-app"></div>
+        </div>
+        <div id="nodisplay">
+            If you see this message wait up to 30s, otherwise please revisit on a desktop device.
+        </div>
     </div>
-  </body>
+</body>
+
 </html>

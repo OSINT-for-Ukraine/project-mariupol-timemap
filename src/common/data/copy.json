@@ -12,11 +12,26 @@
           "Cada evento estará coloreado según la persona que dio el testimonio del evento."
         ],
         "colors": [
-          { "class": "category_group00", "label": "Categoría Grupo 00" },
-          { "class": "category_group01", "label": "Categoría Grupo 01" },
-          { "class": "category_group02", "label": "Categoría Grupo 02" },
-          { "class": "category_group03", "label": "Categoría Grupo 03" },
-          { "class": "other", "label": "Otras categorías" }
+          {
+            "class": "category_group00",
+            "label": "Categoría Grupo 00"
+          },
+          {
+            "class": "category_group01",
+            "label": "Categoría Grupo 01"
+          },
+          {
+            "class": "category_group02",
+            "label": "Categoría Grupo 02"
+          },
+          {
+            "class": "category_group03",
+            "label": "Categoría Grupo 03"
+          },
+          {
+            "class": "other",
+            "label": "Otras categorías"
+          }
         ]
       },
       "default": {
@@ -36,7 +51,7 @@
       "title": "Título",
       "filters": "Filtros",
       "explore_by_filter__title": "Explorar por filtros",
-      "explore_by_filter__description": "Al seleccionar filtros, puede ver los eventos que tienen esa categoría. Para ver todos los eventos puede quitar todas las selecciones (o seleccionarlos todos).",
+      "explore_by_filter__description": "Al seleccionar filtros, puede ver los eventos que tienen esa categoria. Para ver todos los eventos puede quitar todas las selecciones (o seleccionarlos todos).",
       "panels": {
         "mentions": {
           "title": "Personas",
@@ -50,18 +65,34 @@
           "title": "Directorio de etiquetas",
           "placeholder": "Búsqueda"
         }
-      },
-      "fullscreen_enter": "Pantalla completa",
-      "fullscreen_exit": "Salir de pantalla completa"
+      }
     },
     "timeline": {
       "zoomLevels": [
-        { "label": "20 años", "duration": 10512000 },
-        { "label": "2 años", "duration": 1051200 },
-        { "label": "3 meses", "duration": 129600 },
-        { "label": "3 días", "duration": 4320 },
-        { "label": "12 horas", "duration": 720 },
-        { "label": "1 hora", "duration": 60 }
+        {
+          "label": "20 años",
+          "duration": 10512000
+        },
+        {
+          "label": "2 años",
+          "duration": 1051200
+        },
+        {
+          "label": "3 meses",
+          "duration": 129600
+        },
+        {
+          "label": "3 días",
+          "duration": 4320
+        },
+        {
+          "label": "12 horas",
+          "duration": 720
+        },
+        {
+          "label": "1 hora",
+          "duration": 60
+        }
       ],
       "labels_title": "Testimonios",
       "labels": [
@@ -69,7 +100,7 @@
         "Testimonio Grupo 01",
         "Testimonio Grupo 02",
         "Testimonio Grupo 03",
-        "Otras categorías"
+        "Otras categorias"
       ],
       "info": "%n eventos ocurridos entre",
       "default_categories_label": "Eventos"
@@ -108,11 +139,26 @@
           "Each event is colored according the person that gave category of the event."
         ],
         "colors": [
-          { "class": "category_group00", "label": "Category Group 00" },
-          { "class": "category_group01", "label": "Category Group 01" },
-          { "class": "category_group02", "label": "Category Group 02" },
-          { "class": "category_group03", "label": "Category Group 03" },
-          { "class": "other", "label": "Other categories" }
+          {
+            "class": "category_group00",
+            "label": "Category Group 00"
+          },
+          {
+            "class": "category_group01",
+            "label": "Category Group 01"
+          },
+          {
+            "class": "category_group02",
+            "label": "Category Group 02"
+          },
+          {
+            "class": "category_group03",
+            "label": "Category Group 03"
+          },
+          {
+            "class": "other",
+            "label": "Other categories"
+          }
         ]
       },
       "default": {
@@ -151,7 +197,7 @@
       "filters": "Filters",
       "filters_label": "Filters",
       "explore_by_filter__title": "Explore by filter",
-      "explore_by_filter__description": "'Filters' refer to the types of incident. Select multiple filters to introduce colour-coding, up to a maximum of four filters.<br><br>If no filters are selected, all datapoints are displayed.",
+      "explore_by_filter__description": "'Filters' refer to the types of incident. Select multiple filters to introduce colour-coding, up to a maximum of four filters.<br><br><span class='hint'>If no filters are selected, all datapoints are displayed.</span>",
       "categories": "Categories",
       "categories_label": "Categories",
       "explore_by_category__title": "Explore events by category",
@@ -161,7 +207,28 @@
       "explore_by_shapes__title": "Explore events by shape breakdown",
       "explore_by_shape__description": "Shapes map to a given type of event that appears on the timeline.<br><br>Select the shape marker to toggle this type of event on / off",
       "fullscreen_enter": "Fullscreen",
-      "fullscreen_exit": "Exit Fullscreen"
+      "fullscreen_exit": "Exit Fullscreen",
+      "download": {
+        "button": "Download",
+        "panel": {
+          "title": "Download events",
+          "description": "Export the most recent available events in different formats.",
+          "formats": {
+            "api": {
+              "label": "API",
+              "description": "An API endpoint where you can always fetch the entire dataset in JSON format with tools like curl. Useful for integrating the data in other services and visualizaitons."
+            },
+            "csv": {
+              "label": "CSV",
+              "description": "CSV file where sources and filters are concatenated into a single column each due to data structure limitations."
+            },
+            "json": {
+              "label": "JSON",
+              "description": "JSON file where each event is a structured object containing nested arrays of sources and filters."
+            }
+          }
+        }
+      }
     },
     "timeline": {
       "labels_title": "Testimonies",
@@ -172,8 +239,8 @@
         "Testimony Group 03",
         "Other"
       ],
-      "info": "Seeing %n events that occurred between",
-      "default_categories_label": "Events"
+      "info": "Showing <span>%n events</span> that occurred between",
+      "default_categories_label": ""
     },
     "cardstack": {
       "header": "selected events",

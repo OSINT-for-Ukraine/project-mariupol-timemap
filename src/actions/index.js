@@ -383,6 +383,13 @@ export function toggleCover() {
   };
 }
 
+export const TOGGLE_TILE_OVERLAY = "TOGGLE_TILE_OVERLAY";
+export function toggleTileOverlay() {
+  return {
+    type: TOGGLE_TILE_OVERLAY,
+  };
+}
+
 export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 export function updateSearchQuery(searchQuery) {
   return {

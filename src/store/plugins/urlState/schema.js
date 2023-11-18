@@ -43,16 +43,26 @@ export const SCHEMA = Object.freeze({
   id: {
     key: "id",
     trigger: UPDATE_SELECTED,
-    type: SCHEMA_TYPES.NUMBER_ARRAY,
+    type: SCHEMA_TYPES.STRING_ARRAY,
     dehydrate(state) {
-      return getSelected(state).map(({ id }) => id);
+      return getSelected(state).map(({ civId }) => civId);
     },
     // TODO: determine time range if `range` not set.
     rehydrate(nextState, { id }) {
       if (id?.length) {
-        nextState.app.selected = id.map((id) =>
-          nextState.domain.events.find((e) => e.id === id)
-        );
+        nextState.app.selected = id.reduce((acc, curr) => {
+          const event = nextState.domain.events.find((e) => e.civId === curr);
+
+          if (event) {
+            acc.push(event);
+          } else {
+            console.warn(
+              `event ${curr} could not be rehydrated. reason: not present.`
+            );
+          }
+
+          return acc;
+        }, []);
       }
     },
   },
@@ -67,7 +77,14 @@ export const SCHEMA = Object.freeze({
       if (range?.length === 2) {
         const val = Array.from(range);
         val.sort((a, b) => new Date(a) - new Date(b));
-        nextState.app.timeline.range = val;
+        // HACK! diversion from upstream: we use a custom timeline state format.
+        nextState.app.timeline = {
+          ...nextState.app.timeline,
+          range: {
+            ...nextState.app.timeline.range,
+            current: val,
+          },
+        };
       }
     },
   },

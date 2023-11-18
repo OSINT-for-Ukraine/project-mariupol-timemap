@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   title: 'example',
   display_title: 'example',
   SERVER_ROOT: 'http://localhost:4040',
@@ -18,7 +18,6 @@ module.exports = {
     features: {
       COLOR_BY_ASSOCIATION: true,
       USE_ASSOCIATIONS: true,
-      USE_FULLSCREEN: true,
       USE_SOURCES: true,
       USE_COVER: false,
       GRAPH_NONLOCATED: false,
@@ -26,3 +25,5 @@ module.exports = {
     }
   }
 }
+
+export default config;

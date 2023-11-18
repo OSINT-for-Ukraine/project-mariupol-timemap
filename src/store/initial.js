@@ -4,9 +4,10 @@ import global, { colors } from "../common/global";
 import copy from "../common/data/copy.json";
 import { language } from "../common/utilities";
 import { DEFAULT_TAB_ICONS } from "../common/constants";
+import config from "../../config";
 
 const isSmallLaptop = window.innerHeight < 800;
-const mapIniital = {
+const mapInitial = {
   anchor: [31.356397, 34.784818],
   startZoom: 11,
   minZoom: 2,
@@ -66,7 +67,6 @@ const initial = {
       },
     },
     shapes: [],
-    isMobile: /Mobi/.test(navigator.userAgent),
     language: "en-US",
     cluster: {
       radius: 30,
@@ -78,14 +78,15 @@ const initial = {
         ticks: 15,
         height: isSmallLaptop ? 170 : 250,
         width: 0,
-        marginLeft: 70,
+        marginLeft: 20,
         marginTop: isSmallLaptop ? 5 : 10, // the padding used for the day/month labels inside the timeline
         marginBottom: 60,
         contentHeight: isSmallLaptop ? 160 : 200,
         width_controls: 100,
       },
-      range: [new Date(2001, 2, 23, 12), new Date(2021, 2, 23, 12)],
-      rangeLimits: [new Date(1, 1, 1, 1), new Date()],
+      range: {
+        current: null,
+      },
       zoomLevels: copy[language].timeline.zoomLevels || [
         { label: "20 years", duration: 10512000 },
         { label: "2 years", duration: 1051200 },
@@ -139,6 +140,12 @@ const initial = {
           title: copy[language].toolbar.explore_by_shape__title,
           description: copy[language].toolbar.explore_by_shape__description,
         },
+        download: {
+          icon: DEFAULT_TAB_ICONS.DOWNLOAD,
+          label: copy[language].toolbar.download.button,
+          title: copy[language].toolbar.download.panel.title,
+          description: copy[language].toolbar.download.panel.description,
+        },
       },
     },
     loading: false,
@@ -151,8 +158,9 @@ const initial = {
    */
   ui: {
     tiles: {
-      current: "openstreetmap", // ['openstreetmap', 'streets', 'satellite'] (2nd two require a mapbox access token)
+      current: "openstreetmap", // ['openstreetmap', 'streets', 'satellite']
       default: "openstreetmap", // ['openstreetmap', 'streets', 'satellite']
+      satellite: "satellite",
     },
     style: {
       categories: {
@@ -205,19 +213,16 @@ const initial = {
 };
 
 let appStore;
-if (process.env.store) {
-  appStore = mergeDeepLeft(process.env.store, initial);
+if (config.store) {
+  appStore = mergeDeepLeft(config.store, initial);
 } else {
   appStore = initial;
 }
 
-// NB: config.js dates get implicitly converted to strings in mergeDeepLeft
-appStore.app.timeline.range[0] = new Date(appStore.app.timeline.range[0]);
-appStore.app.timeline.range[1] = new Date(appStore.app.timeline.range[1]);
 appStore.app.flags.isIntropopup = !!appStore.app.intro;
 
 if ("map" in appStore.app) {
-  appStore.app.map = mergeDeepLeft(appStore.app.map, mapIniital);
+  appStore.app.map = mergeDeepLeft(appStore.app.map, mapInitial);
 }
 
 if ("space3d" in appStore.app) {

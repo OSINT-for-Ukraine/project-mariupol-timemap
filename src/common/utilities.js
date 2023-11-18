@@ -1,17 +1,18 @@
+import config from "../../config";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import dayjs from "dayjs";
 import hash from "object-hash";
 import { timeFormatDefaultLocale } from "d3";
+import esMxData from "./data/es-MX.json";
 
 import { ASSOCIATION_MODES, POLYGON_CLIP_PATH } from "./constants";
 
 dayjs.extend(customParseFormat);
 
-let { DATE_FMT, TIME_FMT } = process.env;
-if (!DATE_FMT) DATE_FMT = "MM/DD/YYYY";
-if (!TIME_FMT) TIME_FMT = "HH:mm";
+const DATE_FMT = config.DATE_FMT ?? "MM/DD/YYYY";
+const TIME_FMT = config.TIME_FMT ?? "HH:mm";
 
-export const language = process.env.store.app.language || "en-US";
+export const language = config.store.app.language || "en-US";
 
 export function getPathLeaf(path) {
   const splitPath = path.split("/");
@@ -249,14 +250,15 @@ export function injectSource(id) {
   };
 }
 
+const API_ROOT =
+  import.meta.env.MODE === "development" ? "" : config.SERVER_ROOT;
+
 export function urlFromEnv(ext) {
-  if (process.env[ext]) {
-    if (!Array.isArray(process.env[ext])) {
-      return [`${process.env.SERVER_ROOT}${process.env[ext]}`];
+  if (config[ext]) {
+    if (!Array.isArray(config[ext])) {
+      return [`${API_ROOT}${config[ext]}`];
     } else {
-      return process.env[ext].map(
-        (suffix) => `${process.env.SERVER_ROOT}${suffix}`
-      );
+      return config[ext].map((suffix) => `${API_ROOT}${suffix}`);
     }
   } else {
     return null;
@@ -487,7 +489,7 @@ export function makeNiceDate(datetime) {
  */
 export function setD3Locale() {
   const languages = {
-    "es-MX": require("./data/es-MX.json"),
+    "es-MX": esMxData,
   };
 
   if (language !== "es-US" && languages[language]) {
@@ -560,8 +562,23 @@ export function getFilterIdx(
   else return 0;
 }
 
-export const isEmptyString = (s) => s.length === 0;
+export function downloadAsFile(filename, content) {
+  let element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    `data:application/octet-stream;charset=utf-8,${encodeURIComponent(content)}`
+  );
+  element.setAttribute("download", filename);
 
+  element.style.display = "none";
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
+export const isEmptyString = (s) => s.length === 0;
 export const isOdd = (num) => num % 2 !== 0;
 
 export function isEmptyObject(o) {

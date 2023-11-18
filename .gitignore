@@ -2,7 +2,6 @@
 build/
 node_modules/
 
-*config.js
 dev.config.js
 !config/webpack*.config.js
 !config/getHttpsConfig.js
@@ -19,7 +18,4 @@ src/assets/fonts
 
 \.DS_Store
 
-package-lock.json
 tags
-
-.env.local

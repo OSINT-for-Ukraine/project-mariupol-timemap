@@ -1,63 +1,62 @@
-# prerequisties 
+<h1 align="center">Civilian Harm in Ukraine TimeMap</h1>
 
-## add repostiories for Node 16
-```
-sudo apt-get update
-sudo apt-get install -y ca-certificates curl gnupg
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-```
+<h2 align="center">
+	Explore it in <a href="https://ukraine.bellingcat.com/">ukraine.bellingcat.com</a>
+	<br/>
+	Download/integrate the data from <a href="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json">here</a> <small>(regularly updated dataset)</small>
+</h2>
 
-```
-NODE_MAJOR=16
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-```
+<h3 align="center">
+Read Bellingcat's article about this project in 
+<a href="https://www.bellingcat.com/news/2022/03/17/hospitals-bombed-and-apartments-destroyed-mapping-incidents-of-civilian-harm-in-ukraine/">English (UK)</a>,
+<a href="https://ru.bellingcat.com/novosti/2022/03/18/hospitals-bombed-and-apartments-destroyed-mapping-incidents-of-civilian-harm-in-ukraine-ru/">Русский (Россия)</a>
+</h3>
 
-## install node 16
-```
-sudo apt-get update
-sudo apt-get install nodejs -y
-```
-# installation
-## install timemap
+<p align="center">
+<strong>
+	TimeMap is a tool for exploration, monitoring and classification of incidents in time and space, originally forked from <a href="https://github.com/forensic-architecture/timemap">forensic-architecture/timemap</a>.
+</strong>
+</p>
+<br>
+<br>
 
-```
-git clone https://gitlab.com/FieldWorker/timemap.git
-cd timemap
-npm install --legacy-peer-deps
-cp example.config_working.js config.js
-```
+![ukraine.bellingcat.com timemap preview](docs/example-timemap.png)
 
-## set top directory variable
-This step is just to ease up the setup for you, if you know what you're doing just skip it
+## Development
+* `npm install` to setup
+* adjust any local configs in [config.js](config.js)
+* `CONFIG=config.js npm run dev` or `npm run dev` if the file is named config.js
+* For more info visit the [original repo](https://github.com/forensic-architecture/timemap)
 
-```
-TOP_DIRECTORY=$(pwd)
-```
 
-## install json-server
+## Deployment
+This project is now living in github pages and the API has switched to auto-updated S3 files.
 
-```
-cd "${TOP_DIRECTORY}/csv_to_json_mapping"
-npm install --prefix . json-server
-```
+Release with `npm run deploy`. 
 
-# start of timemap and json-server
-First we need to start our json endpoint providing data for the map
+## Contributing
+Please check our [issues page](https://github.com/bellingcat/ukraine-timemap/issues) for desired contributions, and feel free to suggest your own. 
 
-## start json-server
+## Configurations
 
-```
-cd "${TOP_DIRECTORY}/csv_to_json_mapping"
-$(npm bin)/json-server --watch list_of_events.json --port 4040
-```
+<details>
+<summary>Documentation of <a href="config.js">config.js</a> </summary>
 
-## start timemap in the second terminal
-open new terminal and navigate to timemap folder
-then execute
-```
-CONFIG=config.js npm run dev
-```
+* `SERVER_ROOT` - points to the API base address
+* `XXXX_EXT` - points to the respective JSONs of the data, for events, sources, and associations
+* `API_DATA` - S3 file address that can be downloaded or integrated into external apps/visualizations
+* `MAPBOX_TOKEN` - used to load the custom styles
+* `DATE_FMT` and `TIME_FMT` - how to consume the events' date/time from the API
+* `store.app.map` - configures the initial map view and the UX limits
+* `store.app.cluster` - configures how clusters/bubbles are grouped into larger clusters, larger `radius` means bigger cluster bubbles
+* `store.app.timeline` - configure timeline ranges, zoom level options, and default range
+* `store.app.intro` - the intro panel that shows on start
+* `store.app.cover` - configuration for the full page cover, the `description` is a list of markdown entities, can also contain html
+* `store.ui.colors` and `store.ui.maxNumOfColors` are applied to filters, as they are selected
 
-you need to modify the timerange to see the events. Use below URL:
-http://localhost:8080/?range=2022-02-01&range=2023-01-31
+Easiest way to deploy the static files is through 
+* `nvm use 16`
+* `npm run build` (rather: `CI=false npm run build`)
+* copy the files to your server, for example to `/var/www/html`
+
+</details>
