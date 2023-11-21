@@ -94,8 +94,6 @@ const config = {
           "\n" +
           "    - Providing a learning environment to new OSINTers by training them by practice \n" +
           "\n" +
-          "Unlike other mapping efforts our map is aimed to serve as an archive of potential evidence for International crimes. It can then be used in the interests of justice, accountability and research by advocacy groups, academics, and most importantly used to train the next generation of OSINTers by helping them learn on the go. \n" +
-          "\n" +
           "We achieve our mission by: \n" +
           "\n" +
           "    - Documenting International Crimes by our OSINTers\n" +
