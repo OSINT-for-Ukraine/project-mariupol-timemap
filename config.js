@@ -1,9 +1,10 @@
 const one_day = 1440;
 //  SERVER_ROOT: "http://74.50.81.175:3000/",
+
 const config = {
   title: "Project Mariupol",
   display_title: "Project Mariupol",
-  SERVER_ROOT: "http://74.50.81.175:8080/",
+  SERVER_ROOT: "http://74.50.81.175:3000/",
   EVENTS_EXT: "Events",
   SOURCES_EXT: "Sources",
   ASSOCIATIONS_EXT: "Associations",
