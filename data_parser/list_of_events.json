@@ -37442,7 +37442,7 @@
             "time": "00:00"
         }
     ],
-    "list_of_sources": {
+    "Sources": {
         "sources0": {
             "description": "",
             "id": "sources0",

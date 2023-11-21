@@ -71,7 +71,7 @@ for ind, event in enumerate(content[1:]):
     print([event[-8]])
     list_of_sources[f"sources{ind}"] = {"id": f"sources{ind}", "paths": [event[-9]], "title": "", "description":""}
     list_of_associations.append({"id": f"associations{ind}", "desc": [event[-8]], "title": [event[-8]], "mode": "FILTER", "filter_paths": [event[-8]]})
-list_of_events = {"Events": list_of_events, "list_of_sources": list_of_sources, "Associations":list_of_associations}
+list_of_events = {"Events": list_of_events, "Sources": list_of_sources, "Associations":list_of_associations}
 # print(list_of_wrong)
 with open("list_of_events.json", "w") as f:
     json.dump(list_of_events, f, indent=4, sort_keys=True)
