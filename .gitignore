@@ -1,7 +1,7 @@
 .idea/
 build/
 node_modules/
-
+csv_to_json_mapping/node_modules/
 dev.config.js
 !config/webpack*.config.js
 !config/getHttpsConfig.js
