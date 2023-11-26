@@ -28,7 +28,7 @@ Read Bellingcat's article about this project in
 * `CONFIG=config.js npm run dev` or `npm run dev` if the file is named config.js
 * For more info visit the [original repo](https://github.com/forensic-architecture/timemap)
 * `npm run dev:wsl  -- --port 80` for production (temporarily)
-
+* `nohup $(npm bin)/json-server --watch list_of_events.json --host 74.50.81.175 &` 
 ## Deployment
 This project is now living in github pages and the API has switched to auto-updated S3 files.
 
