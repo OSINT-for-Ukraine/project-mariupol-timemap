@@ -8,19 +8,12 @@ export default defineConfig({
     outDir: "build"
   },
   server: {
-
-    cors: false,
-
-    // proxy: {
-    //   "/api": {
-    //     target: "https://ukraine.bellingcat.com/ukraine-server",
-    //     changeOrigin: true,
-    //   },
-    //   "/timemap": {
-    //     target: "https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr",
-    //     changeOrigin: true,
-    //   }
-    // }
+    proxy: {
+      "/api": {
+        target: "http://74.50.81.175:3000/",
+        changeOrigin: true,
+      },
+    }
   },
   test: {
     globals: true,
