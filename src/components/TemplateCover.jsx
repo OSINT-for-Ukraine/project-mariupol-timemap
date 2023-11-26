@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Player } from "video-react";
 import { marked } from "marked";
 import MediaOverlay from "./atoms/Media";
-import ofulogo from "../assets/ofu-logo.png";
+import ofulogo from "../assets/ofu-logo.jpg";
 const MEDIA_HIDDEN = -2;
 
 /**
