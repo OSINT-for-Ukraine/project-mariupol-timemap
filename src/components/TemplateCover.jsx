@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { Player } from "video-react";
 import { marked } from "marked";
 import MediaOverlay from "./atoms/Media";
-// import falogo from "../assets/fa-logo.png";
-import bcatlogo from "../assets/bellingcat-logo.png";
+import ofulogo from "../assets/ofu-logo.png";
 const MEDIA_HIDDEN = -2;
 
 /**
@@ -157,8 +156,8 @@ class TemplateCover extends Component {
     return (
       <div className="default-cover-container">
         <div className={showing ? "cover-header" : "cover-header minimized"}>
-          <a className="cover-logo-container" href="https://bellingcat.com">
-            <img className="cover-logo" src={bcatlogo} alt="Bellingcat logo" />
+          <a className="cover-logo-container" href="https://www.osintforukraine.com/">
+            <img className="cover-logo" src={ofulogo} alt="OFU logo" />
           </a>
         </div>
         <div className="cover-content">

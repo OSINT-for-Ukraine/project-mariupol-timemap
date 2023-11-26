@@ -27,7 +27,7 @@ Read Bellingcat's article about this project in
 * adjust any local configs in [config.js](config.js)
 * `CONFIG=config.js npm run dev` or `npm run dev` if the file is named config.js
 * For more info visit the [original repo](https://github.com/forensic-architecture/timemap)
-
+* `npm run dev:wsl  -- --port 80` for production (temporarily)
 
 ## Deployment
 This project is now living in github pages and the API has switched to auto-updated S3 files.
