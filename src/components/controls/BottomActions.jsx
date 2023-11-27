@@ -29,10 +29,14 @@ function BottomActions(props) {
         </div>
         <div style={{ fontSize: 9, paddingTop: 10 }}>
           Made with{" "}
-          <a href="https://github.com/forensic-architecture/timemap">TimeMap</a>
+          <a href="https://github.com/bellingcat/ukraine-timemap">TimeMap</a>
           <br />
-          Free software from <br />{" "}
+          Free software made by <br />{" "}
           <a href="https://forensic-architecture.org">Forensic Architecture</a>
+            <br />
+            and
+            <a href="https://www.bellingcat.com/">Bellingcat</a>
+
         </div>
       </>
     );
