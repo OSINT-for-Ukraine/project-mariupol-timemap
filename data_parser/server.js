@@ -1,4 +1,3 @@
-
 import pkg from 'json-server';
 const { create, router: _router, defaults } = pkg;
 
