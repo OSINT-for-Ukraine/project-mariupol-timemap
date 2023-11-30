@@ -27,8 +27,11 @@ Read Bellingcat's article about this project in
 * adjust any local configs in [config.js](config.js)
 * `CONFIG=config.js npm run dev` or `npm run dev` if the file is named config.js
 * For more info visit the [original repo](https://github.com/forensic-architecture/timemap)
-* `npm run dev:wsl  -- --port 80` for production (temporarily)
-* `nohup $(npm bin)/json-server --watch list_of_events.json --host 74.50.81.175 &` 
+* 
+* For production deployment:
+* pm2 serve build/ 80 --name "map" --spa
+* pm2 start server.mjs --name api
+
 ## Deployment
 This project is now living in github pages and the API has switched to auto-updated S3 files.
 
