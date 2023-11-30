@@ -1,14 +1,13 @@
 const one_day = 1440;
-//  SERVER_ROOT: "http://74.50.81.175:3000/",
 
 const config = {
   title: "Project Mariupol",
   display_title: "Project Mariupol",
-  SERVER_ROOT: "http://74.50.81.175:3000/",
+  SERVER_ROOT: "http://174.138.189.44:3000/",
   EVENTS_EXT: "Events",
   SOURCES_EXT: "Sources",
   ASSOCIATIONS_EXT: "Associations",
-  API_DATA: "http://74.50.81.175:8080/Events",
+  API_DATA: "http://174.138.189.44:8080/Events",
   MAPBOX_TOKEN:
     "pk.eyJ1IjoiYmVsbGluZ2NhdC1tYXBib3giLCJhIjoiY2tleW0wbWliMDA1cTJ5bzdkbTRraHgwZSJ9.GJQkjPzj8554VhR5SPsfJg",
   // MEDIA_EXT: "/api/media",
