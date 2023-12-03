@@ -1,7 +1,7 @@
 <h1 align="center">Civilian Harm in Ukraine TimeMap</h1>
 
 <h2 align="center">
-	Explore it in <a href="https://ukraine.bellingcat.com/">ukraine.bellingcat.com</a>
+	Explore it in <a href="https://map.osintforukraine.com/">map.osintforukraine.com</a>
 	<br/>
 	Download/integrate the data from <a href="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json">here</a> <small>(regularly updated dataset)</small>
 </h2>
@@ -20,7 +20,7 @@ Read Bellingcat's article about this project in
 <br>
 <br>
 
-![ukraine.bellingcat.com timemap preview](docs/example-timemap.png)
+![map.osintforukraine.com timemap preview](docs/example-timemap.png)
 
 ## Development
 * `npm install` to setup
