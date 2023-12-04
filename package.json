@@ -2,7 +2,7 @@
   "name": "timemap",
   "version": "0.1.0",
   "description": "",
-  "homepage": "https://bellingcat.github.io/ukraine-timemap",
+  "homepage": "https://map.osintforukraine.com/",
   "private": true,
   "engines": {
     "node": "18"
