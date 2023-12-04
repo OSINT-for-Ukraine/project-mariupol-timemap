@@ -19,7 +19,7 @@ server.use(middlewares);
 server.use(router);
 
 const PORT = 3000; // Change the port if needed
-const fs = require('fs');
+// const fs = require('fs');
 
 server.listen(PORT, () => {
   console.log(`JSON Server is running on port ${PORT}`);
