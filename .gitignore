@@ -1,4 +1,5 @@
 .idea/
+.cert
 build/
 node_modules/
 csv_to_json_mapping1/node_modules/
