@@ -251,7 +251,6 @@ export function injectSource(id) {
 }
 
 const API_ROOT = config.SERVER_ROOT;
-console.log(API_ROOT)
 //  import.meta.env.MODE === "development" ? "" : config.SERVER_ROOT;
 
 export function urlFromEnv(ext) {
