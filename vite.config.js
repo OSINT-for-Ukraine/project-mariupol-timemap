@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://api.osintforukraine.com/",
+        target: "https://api.osintforukraine.com/",
         changeOrigin: true,
       },
     }
