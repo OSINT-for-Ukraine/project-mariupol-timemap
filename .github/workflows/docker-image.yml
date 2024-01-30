@@ -4,13 +4,11 @@ on:
   push:
     branches: [ "main" ]
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
     steps:       
-    - name: Deploy using ssh
-      uses: appleboy/ssh-action@master
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
