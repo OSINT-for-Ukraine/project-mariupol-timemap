@@ -31,7 +31,7 @@ Read Bellingcat's article about this project in
 * For production deployment:
 * pm2 serve build/ 80 --name "map" --spa
 * pm2 start server.mjs --name api
-
+* uvicorn api:app --port 3000 --host 
 ## Deployment
 This project is now living in github pages and the API has switched to auto-updated S3 files.
 
