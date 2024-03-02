@@ -49,19 +49,16 @@ associations_data = list_of_events["Associations"]
 
 sources_data = list_of_events["Sources"]
 
-# Load the additional data from the file
-with open('deepstate_data.json', 'r') as file:
-    deepstate_data = json.load(file)
 
-# Previous routes here...
-
-
-@app.get("/data_by_date/{date}/", response_model=List[Union[dict, str]])
+@app.get("/Military/{date}/", response_model=List[Union[dict, str]])
 async def read_data_by_date(date: str):
-    matching_data = [entry for entry in deepstate_data if entry["date"] == date]
-    if not matching_data:
+    # datefile = date.replace("/", "-")
+    with open(f'mil_data/{date}.json', 'r') as file:
+        deepstate_data = json.load(file)
+
+    if not deepstate_data:
         raise HTTPException(status_code=404, detail="Data not found for the specified date")
-    return matching_data
+    return deepstate_data
 
 
 @app.get("/Events/")

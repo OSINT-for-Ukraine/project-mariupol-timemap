@@ -2,7 +2,8 @@ import { urlFromEnv } from "../common/utilities";
 
 // TODO: relegate these URLs entirely to environment variables
 // const CONFIG_URL = urlFromEnv('CONFIG_EXT')
-const EVENT_DATA_URL = urlFromEnv("EVENTS_EXT");  // TODO here the data is fetched from API
+const MILITARY_DATA_URL = urlFromEnv("MILITARY_EXT");  // TODO data here the data is fetched from API
+const EVENT_DATA_URL = urlFromEnv("EVENTS_EXT");
 const ASSOCIATIONS_URL = urlFromEnv("ASSOCIATIONS_EXT");
 const SOURCES_URL = urlFromEnv("SOURCES_EXT");
 const SITES_URL = urlFromEnv("SITES_EXT");

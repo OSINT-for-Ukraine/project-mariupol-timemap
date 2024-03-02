@@ -20,35 +20,34 @@ associations_new = associations
 
 def filter_dublicates():
     count = 0
-    for index1, event1 in enumerate(our_data["Events"]):
-        for index2, event2 in enumerate(events):
+    for index2, event2 in enumerate(events):
+        for index1, event1 in enumerate(our_data["Events"]):
             if not event1["sources"]:
-                our_data_new.pop(index1)
+                our_data_new.remove(event1)
             if not event2["sources"]:
-                events_new.pop(index2)
+                events_new.remove(event2)
             if event2["sources"] and event1["sources"]:
                 try:
                     if our_data["Sources"][event1["sources"][0]]["paths"][0] in sources[event2["sources"][0]]["paths"]:
-                        our_data_new["Events"].pop(index1)
+                        if event1 in our_data_new["Events"]: our_data_new["Events"].remove(event1)
                     elif event1["description"] == event2["description"]:
-                        our_data_new["Events"].pop(index1)
+                        if event1 in our_data_new["Events"]: our_data_new["Events"].remove(event1)
                 except ValueError:
                     continue
-    for index1, event1 in enumerate(our_data["Events"]):
-        for index2, event2 in enumerate(events):
+            if not event1["longitude"] or not event2["longitude"] or not event1["latitude"] or not event2["latitude"]:
+                if event1 in our_data_new["Events"]: our_data_new["Events"].remove(event1)
+                continue
             try:
                 distance = math.dist([float(event1["longitude"]), float(event1["latitude"])],
                                      [float(event2["longitude"]), float(event2["latitude"])])
-            except ValueError:
-                continue
-            try:
-                if event1["date"] == event2["date"] and distance < 0.3:
-                    our_data_new["Events"].pop(index1)
+                if event1["date"] == event2["date"] and distance < 0.2:
+                    if event1 in our_data_new["Events"]: our_data_new["Events"].remove(event1)
                 elif event1["date"] == event2["date"] and event1["longitude"][:-4] == event2["longitude"][:-4]:
-                    our_data_new["Events"].pop(index1)
+                    if event1 in our_data_new["Events"]: our_data_new["Events"].remove(event1)
                 elif event1["date"] == event2["date"] and event1["latitude"][:-4] == event2["latitude"][:-4]:
-                    our_data_new["Events"].pop(index1)
+                    if event1 in our_data_new["Events"]: our_data_new["Events"].remove(event1)
             except ValueError as e:
+                breakpoint()
                 count += 1
                 continue
     print(count)
@@ -63,9 +62,33 @@ def filter_dublicates():
                 our_data_new["Events"].pop(our_data["Events"].index(event1))
 
 filter_dublicates()
+def filter_dublicates2():
+    count = 0
+    for index2, event2 in enumerate(events):
+        for index1, event1 in enumerate(events):
+            if not event1["longitude"] or not event2["longitude"] or not event1["latitude"] or not event2["latitude"]:
+                if event1 in events_new: events_new.remove(event1)
+                continue
+            try:
+                distance = math.dist([float(event1["longitude"]), float(event1["latitude"])],
+                                     [float(event2["longitude"]), float(event2["latitude"])])
+                if event1["date"] == event2["date"] and distance < 0.2:
+                    if event1 in events_new: events_new.remove(event1)
+            except ValueError as e:
+                breakpoint()
+                count += 1
+                continue
+    print(count)
+
+
+filter_dublicates2()
 for event in events_new:
     event["associations"] = ["associations95"]
 
+
+for source in our_data["Sources"]:
+    if type(our_data["Sources"][source]["paths"]) is str:
+        our_data["Sources"][source]["paths"] = our_data["Sources"][source]["paths"].strip().split(",")
 
 sources_new.update(our_data["Sources"])
 events_new.extend(our_data["Events"])

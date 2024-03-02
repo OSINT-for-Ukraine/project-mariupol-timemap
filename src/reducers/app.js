@@ -52,7 +52,7 @@ function updateTicks(appState, action) {
   };
 }
 
-function updateSelected(appState, action) {
+function updateSelected(appState, action) {  // TODO data
   return Object.assign({}, appState, {
     selected: action.selected,
   });
@@ -312,11 +312,11 @@ function updateSearchQuery(appState, action) {
 
 function app(appState = initial.app, action) {
   switch (action.type) {
-    case UPDATE_HIGHLIGHTED:
+    case UPDATE_HIGHLIGHTED:  // TODO data
       return updateHighlighted(appState, action);
-    case UPDATE_SELECTED:
+    case UPDATE_SELECTED:   // TODO data
       return updateSelected(appState, action);
-    case UPDATE_COLORING_SET:
+    case UPDATE_COLORING_SET:   // TODO data
       return updateColoringSet(appState, action);
     case UPDATE_TICKS:
       return updateTicks(appState, action);
