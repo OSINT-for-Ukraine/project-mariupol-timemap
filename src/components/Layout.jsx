@@ -68,6 +68,11 @@ class Dashboard extends Component {
     });
   }
 
+  handleMilitarySelect(selected) {
+    // this.props.actions.updateSelected(matchedEvents);
+
+  }
+
   handleSelect(selected, axis) {
     if (selected.length <= 0) {
       this.props.actions.updateSelected([]);

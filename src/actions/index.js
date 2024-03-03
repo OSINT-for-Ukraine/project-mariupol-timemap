@@ -17,6 +17,18 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRpbWVtYXAtZGVm
 const domainMsg = (domainType) =>
   `Something went wrong fetching ${domainType}. Check the URL or try disabling them in the config file.`;
 
+export async function fetchMilitaryData(date) {
+  const response = await fetch(MILITARY_DATA_URL + `/${date}`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+  const data = await response.json();
+
+  return data;
+}
+
 export function fetchDomain() {
   const notifications = [];
 
