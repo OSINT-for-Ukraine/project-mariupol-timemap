@@ -116,19 +116,10 @@ function MapEvents({
     );
   }
 
-  const selectedEventInLocation = locations.filter((location) =>
-    selected.some((event) => location.id === event.id)
-  );
-
-  const updatedLocations =
-    selectedEventInLocation.length > 0 ? selectedEventInLocation : locations;
-
   return (
     <Portal node={svg}>
       <svg>
-        <g className="event-locations">
-          {updatedLocations.map(renderLocation)}
-        </g>
+        <g className="event-locations">{locations.map(renderLocation)}</g>
       </svg>
     </Portal>
   );
