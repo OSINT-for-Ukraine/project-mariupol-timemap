@@ -1,4 +1,11 @@
 {
+  "users": [
+    {
+      "email": "timemap-default-robotic-user@sthrandom.com",
+      "password": "$2a$10$DuVqoFKYaBmjoi/9Zhxy3.7bbGMFgsLS1MmOlMF15kt4f9TC5hUOS",
+      "id": 1
+    }
+  ],
     "Associations": [
         {
             "desc": [
