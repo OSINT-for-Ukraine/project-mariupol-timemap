@@ -172,7 +172,7 @@ function MapEvents({
     <Portal node={svg}>
       <svg>
         <g className="event-locations">{locations.map(renderLocation)}</g>
-        {militaryUnitsLocation.length > 0 && (
+        {selected.length > 0 && militaryUnitsLocation.length > 0 && (
           <g className="event-locations">
             {militaryUnitsLocation.map(renderMilitary)}
           </g>
