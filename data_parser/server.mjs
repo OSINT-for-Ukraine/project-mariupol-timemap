@@ -4,7 +4,7 @@ const { create, router: _router, defaults } = pkg;
 
 
 const server = create();
-const router = _router('list_of_events.json');
+const router = _router('api.json');
 const middlewares = defaults();
 
 server.db = router.db
