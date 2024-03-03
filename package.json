@@ -2,7 +2,7 @@
   "name": "timemap",
   "version": "0.1.0",
   "description": "",
-  "homepage": " http://localhost:5173/",
+  "homepage": "https://map.osintforukraine.com/",
   "private": true,
   "engines": {
     "node": "20"

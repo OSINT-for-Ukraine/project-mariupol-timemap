@@ -3,14 +3,14 @@ const one_day = 1440;
 const config = {
   title: "Project Mariupol",
   display_title: "Project Mariupol",
-  SERVER_ROOT: "http://localhost:3000/",
+  SERVER_ROOT: "https://api.osintforukraine.com/",
   MILITARY_EXT: "Military",
   EVENTS_EXT: "Events",
   SOURCES_EXT: "Sources",
   ASSOCIATIONS_EXT: "Associations",
   LOGIN_EXT: "login",
   // API_DATA: "https://api.osintforukraine.com/Events",
-  API_DATA: "http://localhost:3000/Events",
+  API_DATA: "https://api.osintforukraine.com/Events",
   MAPBOX_TOKEN:
     "pk.eyJ1IjoiYmVsbGluZ2NhdC1tYXBib3giLCJhIjoiY2tleW0wbWliMDA1cTJ5bzdkbTRraHgwZSJ9.GJQkjPzj8554VhR5SPsfJg",
   // MEDIA_EXT: "/api/media",

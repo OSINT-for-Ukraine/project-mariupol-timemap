@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000/",
+        target: "https://api.osintforukraine.com/",
         changeOrigin: true,
       },
     }
