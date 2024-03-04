@@ -93,6 +93,7 @@ function MapEvents({
   function handleMilitaryUnitSelect(e, location) {
     alert(location.description);
     console.log(location.description)
+    blurt(location.description);
     setOpenMilitaryUnitInfo({ open: true, info: location.description });
   }
 
@@ -100,6 +101,7 @@ function MapEvents({
     return (
       <>
         <circle
+          onClick={handleMilitaryUnitSelect}
           className="event-hover"
           cx="0"
           cy="0"
