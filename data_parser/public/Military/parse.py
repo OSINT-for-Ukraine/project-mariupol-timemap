@@ -2,9 +2,11 @@ import os
 import shutil
 from datetime import datetime, timedelta
 
+
 def generate_date_list(start_date, end_date):
     delta = end_date - start_date  # timedelta
     return [start_date + timedelta(days=i) for i in range(delta.days + 1)]
+
 
 def check_and_create_files(start_date, end_date):
     date_list = generate_date_list(start_date, end_date)
