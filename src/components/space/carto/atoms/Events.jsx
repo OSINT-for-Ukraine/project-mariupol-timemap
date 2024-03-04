@@ -92,7 +92,6 @@ function MapEvents({
 
   function handleMilitaryUnitSelect(e, location) {
     setOpenMilitaryUnitInfo({ open: true, info: location.description });
-    MilitaryUnitInfo({ description: location.description, closePopup: () => setOpenMilitaryUnitInfo({ open: false, info: "" }) });
   }
 
   function renderBorder() {
