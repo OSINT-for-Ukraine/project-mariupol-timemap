@@ -66,19 +66,16 @@ const config = {
       },
       intro: [
         '<div class="two-columns"><div class="two-columns_column"><figure><img style="width: 100%; display:block;" src="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/ukraine-timemap/cover01-s.jpg" frameborder="0"><figcaption>Image: Vyacheslav Madiyevskyy/Reuters</figcaption></figure></div><div class="two-columns_column"><figure><img style="width: 100%; display:block;" src="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/ukraine-timemap/cover02-s.jpg" frameborder="0"><figcaption>Image: Järva Teataja/Scanpix Baltics via Reuters</figcaption></figure></div></div>',
-        "Each day, new information and imagery of war crimes in occupied territories and combat zones around Ukraine emerge. Since the revelation of the Bucha Massacre at the beginning of April 2022, there have been various efforts to document war crimes in Ukraine. \n" +
-        "\n" +
-        "Unlike other mapping efforts our map is aimed to serve as an archive of potential evidence for International crimes. It can then be used in the interests of justice, accountability and research by advocacy groups, academics, and most importantly used to train the next generation of OSINTers by helping them learn on the go. \n" +
-        "\n" +
-        "We achieve our mission by: \n" +
-            "\n" +
-        "    Documenting International Crimes by our OSINTers\n" +
-            "\n" +
-        "    Aggregating already mapped data from other OSINT groups\n" +
-            "\n" +
-        "    Collaborating with International and Local NGO’s \n" +
-            "\n" +
-        "    Collaboration with Academic Institutions"
+        "Each day, new information and imagery of war crimes in occupied territories and combat zones around Ukraine emerge. Since the revelation of the Bucha massacre at the beginning of April 2022, there have been various efforts to document war crimes in Ukraine. However, as part of southern and parts of eastern Ukraine remain occupied, traditional modes of investigation have not been successful in gathering information from those regions.\n" +
+        "Open-source information is information in any format (audio, visual and/or metadata) that is available to be accessed online without restrictions. Popular examples are photos from social media apps and pages. In the context of Ukraine, OSINT has been utilised vastly for many purposes. During the first few weeks of the war (and still today), OSINT pages and channels on Telegram and Twitter have been tracking the war (uploading troop movements, tallying unit casualties from photos and videos, tracking planes via the ‘flightradar’ app). In mid-March, the first OSINT information on war crimes emerged with MAXAR satellite imagery of corpse covered roads in occupied Bucha, Hostomel, and Irpin (towns near Kyiv). From then on, various OSINT investigation efforts have been conducted by both governmental and private organisations to document war crimes in Ukraine.\n" +
+        "The project has a twofold goal:\n" +
+        "- mapping international crimes committed in Ukraine by the Russian Federation,\n" +
+        "- providing a learning environment to new OSINTers by training them by practice. \n" +
+        "We achieve our mission by:\n" +
+        "- documenting international crimes by our OSINTers,\n" +
+        "- aggregating already mapped data from other OSINT groups,\n" +
+        "- collaborating with international and local NGOs, \n" +
+        "- collaboration with academic institutions."
       ],
 
       flags: { isInfopoup: false, isCover: false },
