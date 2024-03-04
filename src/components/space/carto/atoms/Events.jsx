@@ -90,7 +90,7 @@ function MapEvents({
     onSelect(events);
   }
 
-  function handleMilitaryUnitSelect(location) {
+  function handleMilitaryUnitSelect(e, location) {
     alert(location.description);
     console.log(location.description);
     setOpenMilitaryUnitInfo({ open: true, info: location.description });
@@ -191,7 +191,7 @@ function MapEvents({
         <g
           className={`location-event`}
           transform={`translate(${x}, ${y})`}
-          onClick={handleMilitaryUnitSelect(location)}
+          onClick={(e) => handleMilitaryUnitSelect(e, location)}
         >
           <path
             d="M 8 0 A 8 8 0 1 1 8 -1.959434878635765e-15 L 0 0  L 8 0 Z"
