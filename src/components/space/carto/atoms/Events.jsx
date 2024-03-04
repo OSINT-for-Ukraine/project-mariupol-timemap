@@ -101,7 +101,7 @@ function MapEvents({
     return (
       <>
         <circle
-          onClick={handleMilitaryUnitSelect}
+          onClick="handleMilitaryUnitSelect()"
           className="event-hover"
           cx="0"
           cy="0"
