@@ -37,7 +37,7 @@ function MilitaryUnitInfo({ description, closePopup }) {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",f
+            justifyContent: "space-between",
             alignItems: "center",
             gap: "20px",
           }}
