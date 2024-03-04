@@ -1,7 +1,6 @@
 import json
-from datetime import datetime
 
-with open("deepstate_data") as file:
+with open("deepstate_data.json") as file:
     old_data = json.load(file)
 
 list_of_dates = {}
@@ -13,7 +12,5 @@ for event in old_data:
 
 for date in list_of_dates:
     datefile = date.replace("/", "-")
-    date_obj = datetime.strptime(datefile, "%m-%d-%Y")
-    new_date_str = date_obj.strftime("%d-%m-%Y")
-    with open(f"{new_date_str}", "w") as f:
+    with open(f"{datefile}", "w") as f:
         json.dump(list_of_dates[date], f, indent=4, sort_keys=True)
