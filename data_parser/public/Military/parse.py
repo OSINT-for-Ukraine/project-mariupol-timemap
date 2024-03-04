@@ -1,18 +1,26 @@
 import os
+import shutil
+from datetime import datetime, timedelta
 
-def remove_json_extension(directory):
-    # Iterate through all files in the specified directory
-    for filename in os.listdir(directory):
-        # Check if the current file has a .json extension
-        if filename.endswith('.json'):
-            # Construct the old file path
-            old_file = os.path.join(directory, filename)
-            # Construct the new file path without the .json extension
-            new_file = os.path.join(directory, filename[:-5])
-            # Rename the file
-            os.rename(old_file, new_file)
-            print(f'Renamed "{old_file}" to "{new_file}"')
+def generate_date_list(start_date, end_date):
+    delta = end_date - start_date  # timedelta
+    return [start_date + timedelta(days=i) for i in range(delta.days + 1)]
 
-# Specify the directory you want to change file extensions in
-directory_path = '.'
-remove_json_extension(directory_path)
+def check_and_create_files(start_date, end_date):
+    date_list = generate_date_list(start_date, end_date)
+    previous_file = None
+    for date in date_list:
+        file_name = date.strftime("%d-%m-%Y") # Assuming text files, adjust extension if needed
+        if not os.path.exists(file_name):
+            if previous_file:
+                shutil.copy(previous_file, file_name)
+                print(f"Missing file for {date.strftime('%d-%m-%Y')} created, copying data from {previous_file}.")
+            else:
+                print(f"No file to copy from for the first date {date.strftime('%d-%m-%Y')}.")
+        else:
+            previous_file = file_name
+
+# Example usage
+start_date = datetime.strptime("19-02-2022", "%d-%m-%Y")
+end_date = datetime.today()
+check_and_create_files(start_date, end_date)
