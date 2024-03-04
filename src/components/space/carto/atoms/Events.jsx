@@ -37,7 +37,7 @@ function MilitaryUnitInfo({ description, closePopup }) {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-between",f
             alignItems: "center",
             gap: "20px",
           }}
@@ -91,6 +91,7 @@ function MapEvents({
   }
 
   function handleMilitaryUnitSelect(e, location) {
+    alert(location.description);
     setOpenMilitaryUnitInfo({ open: true, info: location.description });
   }
 
