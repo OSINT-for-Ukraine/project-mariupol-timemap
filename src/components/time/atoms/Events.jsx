@@ -15,6 +15,7 @@ import {
 } from "../../../common/utilities";
 import { AVAILABLE_SHAPES } from "../../../common/constants";
 
+ // todo change the colours
 function renderDot(event, styles, props) {
   const colorPercentages = calculateColorPercentages(
     [event],

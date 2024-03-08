@@ -5,7 +5,7 @@
   "homepage": "https://map.osintforukraine.com/",
   "private": true,
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "scripts": {
     "dev": "vite",
@@ -21,12 +21,16 @@
   },
   "dependencies": {
     "@json2csv/plainjs": "^6.1.2",
+    "blurt": "^2.0.0",
     "d3": "^7.4.2",
     "dayjs": "^1.11.0",
+    "http-server": "^14.1.1",
     "joi": "^17.1.1",
+    "json-server": "^1.0.0-alpha.23",
     "leaflet": "^1.0.3",
     "marked": "^4.2.5",
     "object-hash": "^3.0.0",
+    "pm2": "^5.3.1",
     "ramda": "^0.28.0",
     "react": "^18.0.0",
     "react-device-detect": "^2.2.2",

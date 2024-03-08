@@ -42,6 +42,13 @@
 
   &.is-active {
   }
+
+  &.light-bg {
+    &:hover:after,
+    &:hover:before {
+      background-color: #000000;
+    }
+  }
 }
 
 .side-menu-burg:focus {

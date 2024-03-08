@@ -425,7 +425,8 @@ class Map extends Component {
     );
     const filteredLocations = mapClustersToLocations(
       individualClusters,
-      this.props.domain.locations
+      this.props.domain.locations,
+      this.props.app.selected
     );
 
     return (
@@ -450,9 +451,10 @@ class Map extends Component {
   }
 
   renderClusters() {
-    const allClusters = this.state.clusters.filter(
-      (cl) => cl.properties.cluster
-    );
+    const allClusters =
+      this.props.app.selected.length > 0
+        ? []
+        : this.state.clusters.filter((cl) => cl.properties.cluster);
     return (
       <Clusters
         svg={this.svgRef.current}

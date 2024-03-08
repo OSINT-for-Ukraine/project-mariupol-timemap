@@ -1,20 +1,14 @@
-<h1 align="center">Civilian Harm in Ukraine TimeMap</h1>
+<h1 align="center">Project Mariupol TimeMap</h1>
 
 <h2 align="center">
 	Explore it in <a href="https://map.osintforukraine.com/">map.osintforukraine.com</a>
-	<br/>
-	Download/integrate the data from <a href="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json">here</a> <small>(regularly updated dataset)</small>
 </h2>
-
-<h3 align="center">
-Read Bellingcat's article about this project in 
-<a href="https://www.bellingcat.com/news/2022/03/17/hospitals-bombed-and-apartments-destroyed-mapping-incidents-of-civilian-harm-in-ukraine/">English (UK)</a>,
-<a href="https://ru.bellingcat.com/novosti/2022/03/18/hospitals-bombed-and-apartments-destroyed-mapping-incidents-of-civilian-harm-in-ukraine-ru/">Русский (Россия)</a>
-</h3>
 
 <p align="center">
 <strong>
-	TimeMap is a tool for exploration, monitoring and classification of incidents in time and space, originally forked from <a href="https://github.com/forensic-architecture/timemap">forensic-architecture/timemap</a>.
+	TimeMap is a tool for exploration, monitoring and classification of incidents in time and space, originally forked from <a href="https://github.com/bellingcat/ukraine-timemap">Bellingcat's Civilian Harm Ukraine-Timemap</a>.
+    <br>
+    Also, credits to forensic-architecture for the original repository: <a href="https://github.com/forensic-architecture/timemap">forensic-architecture/timemap</a>.
 </strong>
 </p>
 <br>
@@ -27,10 +21,8 @@ Read Bellingcat's article about this project in
 * adjust any local configs in [config.js](config.js)
 * `CONFIG=config.js npm run dev` or `npm run dev` if the file is named config.js
 * For more info visit the [original repo](https://github.com/forensic-architecture/timemap)
-* 
 * For production deployment:
 * pm2 serve build/ 80 --name "map" --spa
-* pm2 start server.mjs --name api
 
 ## Deployment
 This project is now living in github pages and the API has switched to auto-updated S3 files.

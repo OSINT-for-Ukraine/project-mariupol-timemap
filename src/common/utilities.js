@@ -250,7 +250,7 @@ export function injectSource(id) {
   };
 }
 
-const API_ROOT = config.SERVER_ROOT;
+const API_ROOT = config.SERVER_ROOT; // TODO data
 //  import.meta.env.MODE === "development" ? "" : config.SERVER_ROOT;
 
 export function urlFromEnv(ext) {
@@ -374,14 +374,21 @@ export function isLongitude(lng) {
   return !!lng && isFinite(lng) && Math.abs(lng) <= 180;
 }
 
-export function mapClustersToLocations(clusters, locations) {
-  return clusters.reduce((acc, cl) => {
-    const foundLocation = locations.find(
-      (location) => location.label === cl.properties.id
+export function mapClustersToLocations(clusters, locations, selected) {
+  if (selected.length > 0) {
+    const selectedEvent = locations.filter((location) =>
+      selected.some((event) => location.id === event.id)
     );
-    if (foundLocation) acc.push(foundLocation);
-    return acc;
-  }, []);
+    return selectedEvent;
+  } else {
+    return clusters.reduce((acc, cl) => {
+      const foundLocation = locations.find(
+        (location) => location.label === cl.properties.id
+      );
+      if (foundLocation) acc.push(foundLocation);
+      return acc;
+    }, []);
+  }
 }
 
 /**
