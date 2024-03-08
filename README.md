@@ -13,6 +13,12 @@
 </p>
 <br>
 <br>
+## Credits:
+Vasile Popa
+Filip Chudzyński
+Richard Mwewa
+Cătălina Hasnaș
+
 
 ![map.osintforukraine.com timemap preview](docs/example-timemap.png)
 
