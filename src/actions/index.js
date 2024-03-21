@@ -59,8 +59,8 @@ export function fetchDomain() {
           headers: {
             'Authorization': 'Bearer ' + token
           }
-          }
-          )
+        }
+        )
           .then((response) => response.json())
           .catch(() => handleError("events"))
       )
@@ -454,5 +454,13 @@ export const REHYDRATE_STATE = "REHYDRATE_STATE";
 export function rehydrateState() {
   return {
     type: REHYDRATE_STATE,
+  };
+}
+
+export const UPDATE_CURRENT_ARTILLERY = "UPDATE_CURRENT_ARTILLERY";
+export function updateCurrentArtillery(currentArtillery) {
+  return {
+    type: UPDATE_CURRENT_ARTILLERY,
+    currentArtillery: currentArtillery,
   };
 }

@@ -148,6 +148,29 @@ class Map extends Component {
      */
     const { map: mapConfig, cluster: clusterConfig } = this.props.app;
 
+    let circle = null;
+    // let popup = null;
+
+    // function addpopup(map, e) {
+    //   L.popup(Object.values(e.latlng), {
+    //     content: "<p>Hello world!<br />This is a nice popup.</p>",
+    //     keepInView: true,
+    //     autoClose: false,
+    //     closeOnClick: false,
+    //   }).addTo(map);
+    // }
+
+    function drawCircle(e, map, radius) {
+      if (circle) {
+        map.removeLayer(circle);
+      }
+      circle = L.circle(Object.values(e.latlng), {
+        color: "red",
+        fillColor: "transparent",
+        radius: radius || 15000,
+      }).addTo(map);
+    }
+
     const map = L.map(this.props.ui.dom.map)
       .setView(mapConfig.anchor, mapConfig.startZoom)
       .setMinZoom(mapConfig.minZoom)
@@ -163,6 +186,16 @@ class Map extends Component {
 
     map.keyboard.disable();
     map.zoomControl.remove();
+
+    map.on("click", (e) => {
+      if (this.props.app.currentArtillery) {
+        const { range } = this.props.app.currentArtillery;
+        drawCircle(e, map, range);
+        // addpopup(map, e);
+      } else {
+        circle = null;
+      }
+    });
 
     map.on("moveend", () => {
       this.alignLayers();
@@ -186,6 +219,7 @@ class Map extends Component {
       if (this.svgRef.current !== null)
         this.svgRef.current.classList.remove("hide");
     });
+
     window.addEventListener("resize", () => {
       this.alignLayers();
     });
@@ -569,6 +603,7 @@ function mapStateToProps(state) {
     },
     app: {
       views: state.app.associations.views,
+      currentArtillery: state.app.currentArtillery,
       selected: selectors.selectSelected(state),
       highlighted: state.app.highlighted,
       map: state.app.map,

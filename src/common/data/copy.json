@@ -228,6 +228,11 @@
             }
           }
         }
+      },
+      "artillery": {
+        "button": "Artillery",
+        "title": "Artillery range",
+        "description": "View artillery range"
       }
     },
     "timeline": {

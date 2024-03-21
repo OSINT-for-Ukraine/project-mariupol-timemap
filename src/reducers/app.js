@@ -31,6 +31,7 @@ import {
   SET_INITIAL_CATEGORIES,
   SET_INITIAL_SHAPES,
   UPDATE_SEARCH_QUERY,
+  UPDATE_CURRENT_ARTILLERY,
 } from "../actions";
 
 function updateHighlighted(appState, action) {
@@ -310,13 +311,21 @@ function updateSearchQuery(appState, action) {
   };
 }
 
+function updateCurrentArtillery(appState, action) {
+  console.log(action);
+  return {
+    ...appState,
+    currentArtillery: action.currentArtillery,
+  };
+}
+
 function app(appState = initial.app, action) {
   switch (action.type) {
-    case UPDATE_HIGHLIGHTED:  // TODO data
+    case UPDATE_HIGHLIGHTED: // TODO data
       return updateHighlighted(appState, action);
-    case UPDATE_SELECTED:   // TODO data
+    case UPDATE_SELECTED: // TODO data
       return updateSelected(appState, action);
-    case UPDATE_COLORING_SET:   // TODO data
+    case UPDATE_COLORING_SET: // TODO data
       return updateColoringSet(appState, action);
     case UPDATE_TICKS:
       return updateTicks(appState, action);
@@ -336,6 +345,8 @@ function app(appState = initial.app, action) {
       return updateNarrativeStepIdx(appState, action);
     case UPDATE_SOURCE:
       return updateSource(appState, action);
+    case UPDATE_CURRENT_ARTILLERY:
+      return updateCurrentArtillery(appState, action);
     /* toggles */
     case TOGGLE_LANGUAGE:
       return toggleLanguage(appState, action);

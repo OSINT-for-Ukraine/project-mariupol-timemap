@@ -105,7 +105,7 @@ class Toolbar extends Component {
         <p>{panels.narratives.description}</p>
         {this.props.narratives.map((narr) => {
           return (
-            <div className="panel-action action">
+            <div key={narr.id} className="panel-action action">
               <button
                 onClick={() => {
                   this.goToNarrative(narr);
@@ -203,6 +203,36 @@ class Toolbar extends Component {
     );
   }
 
+  renderToolbarArtilleryPanel() {
+    const { panels } = this.props.toolbarCopy;
+
+    return (
+      <TabPanel>
+        <hgroup>
+          <h3> {panels.artillery.label} </h3>
+          <p> {panels.artillery.description} </p>
+        </hgroup>
+        <ul>
+          {this.props.artilleries.map((artillery) => {
+            return (
+              <li
+                onClick={() => {
+                  this.props.actions.updateCurrentArtillery(artillery);
+                }}
+                key={artillery.id}
+              >
+                <div>
+                  <p> {artillery.title} </p>
+                  <p> {artillery.range}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </TabPanel>
+    );
+  }
+
   renderToolbarTab(_selected, label, iconKey, key) {
     return (
       <ToolbarButton
@@ -249,6 +279,7 @@ class Toolbar extends Component {
         {features.USE_ASSOCIATIONS ? this.renderToolbarFilterPanel() : null}
         {features.USE_SHAPES ? this.renderToolbarShapePanel() : null}
         {features.USE_DOWNLOAD ? this.renderToolbarDownloadPanel() : null}
+        {this.renderToolbarArtilleryPanel()}
       </div>
     );
   }
@@ -263,6 +294,7 @@ class Toolbar extends Component {
 
         return (
           <div
+            key={idx}
             className={classes}
             onClick={() => {
               this.selectTab(idx);
@@ -335,6 +367,11 @@ class Toolbar extends Component {
                   panels.download.icon
                 )
               : null}
+            {this.renderToolbarTab(
+              filtersIdx + 1,
+              panels.artillery.label,
+              panels.artillery.icon
+            )}
             {features.USE_FULLSCREEN && (
               <FullscreenToggle language={this.props.language} />
             )}
@@ -361,10 +398,9 @@ class Toolbar extends Component {
           <br />
           Free software made by <br />{" "}
           <a href="https://forensic-architecture.org">Forensic Architecture </a>
-            <br />
-            and
-            <a href="https://www.bellingcat.com/"> Bellingcat</a>
-
+          <br />
+          and
+          <a href="https://www.bellingcat.com/"> Bellingcat</a>
         </div>
       </div>
     );
@@ -390,6 +426,8 @@ class Toolbar extends Component {
 function mapStateToProps(state) {
   return {
     filters: selectors.getFilters(state),
+    artilleries: state.domain.artilleries,
+    currentArtillery: state.app.currentArtillery,
     categories: selectors.getCategories(state),
     narratives: selectors.selectNarratives(state),
     shapes: selectors.getShapes(state),
