@@ -53,7 +53,8 @@ function updateTicks(appState, action) {
   };
 }
 
-function updateSelected(appState, action) {  // TODO data
+function updateSelected(appState, action) {
+  // TODO data
   return Object.assign({}, appState, {
     selected: action.selected,
   });

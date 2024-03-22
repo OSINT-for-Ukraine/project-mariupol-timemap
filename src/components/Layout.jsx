@@ -70,7 +70,6 @@ class Dashboard extends Component {
 
   handleMilitarySelect(selected) {
     // this.props.actions.updateSelected(matchedEvents);
-    
   }
 
   handleSelect(selected, axis) {
@@ -283,21 +282,6 @@ class Dashboard extends Component {
     }
   }
 
-  // renderCurrentArtillery() {
-  //   console.log(this.props.app.currentArtillery);
-  //   return this.props.app.currentArtillery ? (
-  //     <Popup
-  //       content={[
-  //         `${this.props.app.currentArtillery.title}`,
-  //         `${this.props.app.currentArtillery.range}`,
-  //       ]}
-  //       isOpen={!!this.props.app.currentArtillery}
-  //       onClose={() => this.props.actions.updateCurrentArtillery(null)}
-  //       title={this.props.app.currentArtillery.title}
-  //     />
-  //   ) : null;
-  // }
-
   render() {
     const { actions, app, domain, timeline, features } = this.props;
 
@@ -374,7 +358,6 @@ class Dashboard extends Component {
           isOpen={app.flags.isInfopopup}
           onClose={actions.toggleInfoPopup}
         />
-        {/* {this.renderCurrentArtillery()} */}
         {this.renderIntroPopup(popupStyles)}
         {app.debug ? (
           <Notification

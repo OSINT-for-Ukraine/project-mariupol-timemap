@@ -54,6 +54,7 @@ class Map extends Component {
       clusters: [],
     };
     this.styleLocation = this.styleLocation.bind(this);
+    this.circle = null;
   }
 
   componentDidMount() {
@@ -148,29 +149,6 @@ class Map extends Component {
      */
     const { map: mapConfig, cluster: clusterConfig } = this.props.app;
 
-    let circle = null;
-    // let popup = null;
-
-    // function addpopup(map, e) {
-    //   L.popup(Object.values(e.latlng), {
-    //     content: "<p>Hello world!<br />This is a nice popup.</p>",
-    //     keepInView: true,
-    //     autoClose: false,
-    //     closeOnClick: false,
-    //   }).addTo(map);
-    // }
-
-    function drawCircle(e, map, radius) {
-      if (circle) {
-        map.removeLayer(circle);
-      }
-      circle = L.circle(Object.values(e.latlng), {
-        color: "red",
-        fillColor: "transparent",
-        radius: radius || 15000,
-      }).addTo(map);
-    }
-
     const map = L.map(this.props.ui.dom.map)
       .setView(mapConfig.anchor, mapConfig.startZoom)
       .setMinZoom(mapConfig.minZoom)
@@ -188,12 +166,18 @@ class Map extends Component {
     map.zoomControl.remove();
 
     map.on("click", (e) => {
+      if (this.circle) {
+        map.removeLayer(this.circle);
+      }
       if (this.props.app.currentArtillery) {
         const { range } = this.props.app.currentArtillery;
-        drawCircle(e, map, range);
-        // addpopup(map, e);
+        this.circle = L.circle(Object.values(e.latlng), {
+          color: "red",
+          fillColor: "transparent",
+          radius: range || 15000,
+        }).addTo(map);
       } else {
-        circle = null;
+        this.circle = null;
       }
     });
 
@@ -551,6 +535,30 @@ class Map extends Component {
     );
   }
 
+  renderCurrentArtillery() {
+    const handleClick = () => {
+      this.map.removeLayer(this.circle);
+      this.props.actions.updateCurrentArtillery(null);
+    };
+    return (
+      <>
+        <div
+          style={{
+            position: "fixed",
+            zIndex: "99",
+            backgroundColor: "white",
+            top: "120px",
+            left: "120px",
+          }}
+        >
+          <p> {this.props.app.currentArtillery.title} </p>
+          <p> {this.props.app.currentArtillery.range} </p>
+          <button onClick={handleClick}>X</button>
+        </div>
+      </>
+    );
+  }
+
   render() {
     const { isShowingSites, isFetchingDomain } = this.props.app.flags;
     const checkMobile = isMobileOnly || window.innerWidth < 600;
@@ -569,6 +577,7 @@ class Map extends Component {
         {this.renderEvents()}
         {this.renderClusters()}
         {this.renderSelected()}
+        {this.props.app.currentArtillery ? this.renderCurrentArtillery() : null}
       </>
     ) : null;
 
