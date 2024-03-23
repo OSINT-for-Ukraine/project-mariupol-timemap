@@ -12,7 +12,7 @@ const config = {
   ASSOCIATIONS_EXT: "Associations",
   LOGIN_EXT: "login",
   // API_DATA: "https://api.osintforukraine.com/Events",
-  API_DATA: "https://api.osintforukraine.com/Events",
+  API_DATA: api_url + "Events",
   MAPBOX_TOKEN:
     "pk.eyJ1IjoiYmVsbGluZ2NhdC1tYXBib3giLCJhIjoiY2tleW0wbWliMDA1cTJ5bzdkbTRraHgwZSJ9.GJQkjPzj8554VhR5SPsfJg",
   // MEDIA_EXT: "/api/media",
