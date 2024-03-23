@@ -1,9 +1,11 @@
 const one_day = 1440;
 
+const api_url = import.meta.env.VITE_API_URL;
+
 const config = {
   title: "Project Mariupol",
   display_title: "Project Mariupol",
-  SERVER_ROOT: "https://api.osintforukraine.com/",
+  SERVER_ROOT: api_url,
   MILITARY_EXT: "Military",
   EVENTS_EXT: "Events",
   SOURCES_EXT: "Sources",

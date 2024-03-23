@@ -33,7 +33,18 @@
 
 3. Run `npm run dev` to start the development server. If you're using a custom config file, prefix the commad with `CONFIG=your_custom_config.js`
 4. For more info visit the [original repo](https://github.com/forensic-architecture/timemap)
-5. Run `pm2 serve build/ 80 --name "map" --spa` for production deployment 
+5. Run `npm run build` to build the webapp and `pm2 serve build/ 80 --name "map" --spa` to start the server
+6. If you need to provide any specific env variable for the config in runtime:
+6.a modify config.js adding new constant variable e.g. `const api_url = import.meta.env.VITE_API_URL;`
+    variable has to start with the prefix 'VITE_'
+6.b assign new created variable to what was previously stored in config dictionary e.g. 
+config = {
+...
+-SERVER_ROOT: "https://api.osintforukraine.com/",
++SERVER_ROOT: api_url,
+...
+}
+6.c update dynamically .env file by running `echo -e "\nVITE_API_URL=https://api.osintforukraine.com/" >> .env && npm run build`
 
 ## Deployment
 This project is now living in github pages and the API has switched to auto-updated S3 files.
