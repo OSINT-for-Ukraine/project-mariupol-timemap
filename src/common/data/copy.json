@@ -232,7 +232,7 @@
       "artillery": {
         "button": "Artillery",
         "title": "Artillery range",
-        "description": "View artillery range"
+        "description": "Select an item from the list and click on the map to see the range."
       }
     },
     "timeline": {

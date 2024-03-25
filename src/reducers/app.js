@@ -313,7 +313,6 @@ function updateSearchQuery(appState, action) {
 }
 
 function updateCurrentArtillery(appState, action) {
-  console.log(action);
   return {
     ...appState,
     currentArtillery: action.currentArtillery,

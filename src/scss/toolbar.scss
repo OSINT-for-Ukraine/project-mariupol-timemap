@@ -244,7 +244,7 @@
     height: auto;
     width: 45px;
     aspect-ratio: 1 / 1;
-    background: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 6px;
     cursor: pointer;
     transition: 0.2s ease;
@@ -308,7 +308,7 @@
     }
 
     &.active {
-      background: $active;
+      background-color: $active;
     }
 
     &:hover,
@@ -335,6 +335,22 @@
         }
       }
     }
+  }
+}
+
+.toolbar-tab:has(.artillery-icon) {
+  background: url("artillery.png") no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  &:hover {
+    background: url("artillery-grey.png") no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  &.active {
+    background: url("artillery-white.png") no-repeat;
+    background-position: center;
+    background-color: $active;
   }
 }
 
@@ -668,6 +684,36 @@
   @media screen and (max-width: 600px) {
     top: 65px;
     opacity: 1;
+  }
+}
+
+.artillery-item {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: start;
+  align-items: center;
+  cursor: pointer;
+  p:nth-child(2) {
+    grid-column-start: 3;
+  }
+  div {
+    justify-self: end;
+
+    .selected {
+      border: 1px solid $yellow;
+      padding: 3px 7px;
+      border-radius: 20px;
+    }
+  }
+  .title {
+    font-weight: bold;
+  }
+  .range {
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+  &:hover {
+    background-color: $darkgrey;
   }
 }
 

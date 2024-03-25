@@ -378,7 +378,12 @@ class Timeline extends Component {
     );
 
     return (
-      <div className={classes} onKeyDown={this.props.onKeyDown} tabIndex="1">
+      <div
+        id="timeline-wrapper"
+        className={classes}
+        onKeyDown={this.props.onKeyDown}
+        tabIndex="1"
+      >
         <Header
           title={title}
           from={this.state.timerange[0]}

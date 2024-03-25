@@ -29,6 +29,7 @@ import {
   isLongitude,
   calculateTotalClusterPoints,
   calcClusterSize,
+  displayRangeInKm,
 } from "../../../common/utilities";
 
 // NB: important constants for map, TODO: make statics
@@ -537,25 +538,25 @@ class Map extends Component {
 
   renderCurrentArtillery() {
     const handleClick = () => {
-      this.map.removeLayer(this.circle);
       this.props.actions.updateCurrentArtillery(null);
+      if (this.circle) {
+        this.map.removeLayer(this.circle);
+      }
     };
     return (
-      <>
-        <div
-          style={{
-            position: "fixed",
-            zIndex: "99",
-            backgroundColor: "white",
-            top: "120px",
-            left: "120px",
-          }}
-        >
-          <p> {this.props.app.currentArtillery.title} </p>
-          <p> {this.props.app.currentArtillery.range} </p>
+      <Portal node={document.getElementById("timeline-wrapper")}>
+        <div className="current-artillery-presentation">
+          <p>
+            Showing &nbsp; <span>{this.props.app.currentArtillery.title} </span>
+            &nbsp; artillery of &nbsp;
+            <span>
+              {displayRangeInKm(this.props.app.currentArtillery.range)}
+            </span>
+            &nbsp; range
+          </p>
           <button onClick={handleClick}>X</button>
         </div>
-      </>
+      </Portal>
     );
   }
 

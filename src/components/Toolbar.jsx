@@ -25,6 +25,7 @@ import {
 import { ToolbarButton } from "./controls/atoms/ToolbarButton";
 import { FullscreenToggle } from "./controls/FullScreenToggle";
 import DownloadPanel from "./controls/DownloadPanel";
+import { displayRangeInKm } from "../common/utilities";
 
 class Toolbar extends Component {
   constructor(props) {
@@ -221,9 +222,14 @@ class Toolbar extends Component {
                 }}
                 key={artillery.id}
               >
-                <div>
-                  <p> {artillery.title} </p>
-                  <p> {artillery.range}</p>
+                <div className="artillery-item">
+                  <p className="title"> {artillery.title} </p>
+                  <p className="range"> {displayRangeInKm(artillery.range)}</p>
+                  {this.props?.currentArtillery?.id === artillery.id ? (
+                    <div>
+                      <span className="selected">selected</span>
+                    </div>
+                  ) : null}
                 </div>
               </li>
             );
@@ -262,6 +268,22 @@ class Toolbar extends Component {
           );
         })}
       </div>
+    );
+  }
+
+  renderToolbarArtilleryTab(id, label) {
+    return (
+      <ToolbarButton
+        isActive={this.state._selected === id && this.state._active === true}
+        iconKey="Artillery"
+        onClick={() => {
+          this.selectTab(id);
+        }}
+        label={label}
+      >
+        <div className="artillery-icon" role="img"></div>
+        <div className="tab-caption">Artillery</div>
+      </ToolbarButton>
     );
   }
 
@@ -367,10 +389,9 @@ class Toolbar extends Component {
                   panels.download.icon
                 )
               : null}
-            {this.renderToolbarTab(
+            {this.renderToolbarArtilleryTab(
               filtersIdx + 1,
-              panels.artillery.label,
-              panels.artillery.icon
+              panels.artillery.label
             )}
             {features.USE_FULLSCREEN && (
               <FullscreenToggle language={this.props.language} />
