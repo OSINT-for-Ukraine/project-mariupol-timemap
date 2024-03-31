@@ -12,7 +12,7 @@ const SHAPES_URL = urlFromEnv("SHAPES_EXT");
 const LOGIN_URL = urlFromEnv("LOGIN_EXT")
 // In order for this way of authorization to work I had to modify json-server-auth module
 // to disable token expiration jwt.verify(token, constants_1.JWT_SECRET_KEY, {ignoreExpiration:true});
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRpbWVtYXAtZGVmYXVsdC1yb2JvdGljLXVzZXJAc3RocmFuZG9tLmNvbSIsImlhdCI6MTcwMTk3OTI0OSwiZXhwIjoxNzAxOTgyODQ5LCJzdWIiOiIxIn0.apD8fHI57lG68PctTL-qem7CqDzc7QXBUAYv6nhGAYA"
+const token = urlFromEnv("JWT_SECRET_KEY")
 
 const domainMsg = (domainType) =>
   `Something went wrong fetching ${domainType}. Check the URL or try disabling them in the config file.`;
