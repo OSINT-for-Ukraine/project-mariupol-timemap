@@ -56,6 +56,7 @@ class Map extends Component {
     };
     this.styleLocation = this.styleLocation.bind(this);
     this.circle = null;
+    this.circleCenter = null;
   }
 
   componentDidMount() {
@@ -169,16 +170,26 @@ class Map extends Component {
     map.on("click", (e) => {
       if (this.circle) {
         map.removeLayer(this.circle);
+        map.removeLayer(this.circleCenter);
       }
       if (this.props.app.currentArtillery) {
         const { range } = this.props.app.currentArtillery;
-        this.circle = L.circle(Object.values(e.latlng), {
+        const center = Object.values(e.latlng);
+        this.circle = L.circle(Object.values(center), {
           color: "red",
           fillColor: "transparent",
-          radius: range || 15000,
+          radius: range || 0,
         }).addTo(map);
+
+        const circleIcon = L.icon({
+          iconUrl: "artillery.png",
+          iconSize: [20, 20],
+        });
+
+        this.circleCenter = L.marker(center, { icon: circleIcon }).addTo(map);
       } else {
         this.circle = null;
+        this.circleCenter = null;
       }
     });
 
