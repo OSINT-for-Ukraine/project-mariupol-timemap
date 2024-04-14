@@ -69,8 +69,9 @@ function MapEvents({
   coloringSet,
   filterColors,
   features,
+  currentMilitaryPositions,
+  setCurrentMilitaryPositions,
 }) {
-  const [militaryUnitsLocation, setMilitaryUnitsLocation] = useState([]);
   const [openMilitaryUnitInfo, setOpenMilitaryUnitInfo] = useState({
     open: false,
     info: "",
@@ -85,7 +86,7 @@ function MapEvents({
 
     const data = await fetchMilitaryData(formattedDate);
 
-    setMilitaryUnitsLocation(data);
+    setCurrentMilitaryPositions(data);
 
     onSelect(events);
   }
@@ -213,11 +214,13 @@ function MapEvents({
       <Portal node={svg}>
         <svg>
           <g className="event-locations">{locations.map(renderLocation)}</g>
-          {selected.length > 0 && militaryUnitsLocation.length > 0 && (
-            <g className="event-locations">
-              {militaryUnitsLocation.map(renderMilitary)}
-            </g>
-          )}
+          {selected.length > 0 &&
+            currentMilitaryPositions &&
+            currentMilitaryPositions.length > 0 && (
+              <g className="event-locations">
+                {currentMilitaryPositions.map(renderMilitary)}
+              </g>
+            )}
         </svg>
       </Portal>
       {openMilitaryUnitInfo.open && (

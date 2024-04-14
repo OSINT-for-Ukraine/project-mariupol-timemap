@@ -32,6 +32,7 @@ import {
   SET_INITIAL_SHAPES,
   UPDATE_SEARCH_QUERY,
   UPDATE_CURRENT_ARTILLERY,
+  UPDATE_CURRENT_MILITARY_POSITIONS,
 } from "../actions";
 
 function updateHighlighted(appState, action) {
@@ -319,6 +320,13 @@ function updateCurrentArtillery(appState, action) {
   };
 }
 
+function updateCurrentMilitaryPositions(appState, action) {
+  return {
+    ...appState,
+    currentMilitaryPositions: action.currentMilitaryPositions,
+  };
+}
+
 function app(appState = initial.app, action) {
   switch (action.type) {
     case UPDATE_HIGHLIGHTED: // TODO data
@@ -347,6 +355,8 @@ function app(appState = initial.app, action) {
       return updateSource(appState, action);
     case UPDATE_CURRENT_ARTILLERY:
       return updateCurrentArtillery(appState, action);
+    case UPDATE_CURRENT_MILITARY_POSITIONS:
+      return updateCurrentMilitaryPositions(appState, action);
     /* toggles */
     case TOGGLE_LANGUAGE:
       return toggleLanguage(appState, action);

@@ -167,6 +167,7 @@ const initial = {
       },
     },
     currentArtillery: null,
+    currentMilitaryPositions: null,
     loading: false,
   },
 

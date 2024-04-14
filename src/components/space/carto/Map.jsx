@@ -476,6 +476,10 @@ class Map extends Component {
         coloringSet={this.props.app.coloringSet}
         filterColors={this.props.ui.filterColors}
         features={this.props.features}
+        currentMilitaryPositions={this.props.app.currentMilitaryPositions}
+        setCurrentMilitaryPositions={(militaryPositions) =>
+          this.props.actions.updateCurrentMilitaryPositions(militaryPositions)
+        }
       />
     );
   }
@@ -625,6 +629,7 @@ function mapStateToProps(state) {
     app: {
       views: state.app.associations.views,
       currentArtillery: state.app.currentArtillery,
+      currentMilitaryPositions: state.app.currentMilitaryPositions,
       selected: selectors.selectSelected(state),
       highlighted: state.app.highlighted,
       map: state.app.map,
