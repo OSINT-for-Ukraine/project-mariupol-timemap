@@ -20,5 +20,5 @@ src/\.DS_Store
 src/assets/fonts
 
 \.DS_Store
-
+.env
 tags
