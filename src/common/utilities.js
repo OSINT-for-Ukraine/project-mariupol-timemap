@@ -591,3 +591,8 @@ export const isOdd = (num) => num % 2 !== 0;
 export function isEmptyObject(o) {
   return o == null || (typeof o === "object" && !Object.keys(o).length);
 }
+
+export const displayRangeInKm = (range) => {
+  const rangeInKm = (range / 1000).toFixed(2);
+  return rangeInKm + "km";
+};

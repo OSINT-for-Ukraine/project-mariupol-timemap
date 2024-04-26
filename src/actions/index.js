@@ -2,17 +2,17 @@ import { urlFromEnv } from "../common/utilities";
 
 // TODO: relegate these URLs entirely to environment variables
 // const CONFIG_URL = urlFromEnv('CONFIG_EXT')
-const MILITARY_DATA_URL = urlFromEnv("MILITARY_EXT");  // TODO data here the data is fetched from API
+const MILITARY_DATA_URL = urlFromEnv("MILITARY_EXT"); // TODO data here the data is fetched from API
 const EVENT_DATA_URL = urlFromEnv("EVENTS_EXT");
 const ASSOCIATIONS_URL = urlFromEnv("ASSOCIATIONS_EXT");
 const SOURCES_URL = urlFromEnv("SOURCES_EXT");
 const SITES_URL = urlFromEnv("SITES_EXT");
 const REGIONS_URL = urlFromEnv("REGIONS_EXT");
 const SHAPES_URL = urlFromEnv("SHAPES_EXT");
-const LOGIN_URL = urlFromEnv("LOGIN_EXT")
+const LOGIN_URL = urlFromEnv("LOGIN_EXT");
 // In order for this way of authorization to work I had to modify json-server-auth module
 // to disable token expiration jwt.verify(token, constants_1.JWT_SECRET_KEY, {ignoreExpiration:true});
-const token = urlFromEnv("JWT_SECRET_KEY")
+const token = urlFromEnv("JWT_SECRET_KEY");
 
 const domainMsg = (domainType) =>
   `Something went wrong fetching ${domainType}. Check the URL or try disabling them in the config file.`;
@@ -55,12 +55,11 @@ export function fetchDomain() {
     const eventPromise = Promise.all(
       EVENT_DATA_URL.map((url) =>
         fetch(url, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Authorization': 'Bearer ' + token
-          }
-          }
-          )
+            Authorization: "Bearer " + token,
+          },
+        })
           .then((response) => response.json())
           .catch(() => handleError("events"))
       )
@@ -76,12 +75,11 @@ export function fetchDomain() {
         );
       } else {
         associationsPromise = fetch(ASSOCIATIONS_URL, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Authorization': 'Bearer ' + token
-          }
-          }
-          )
+            Authorization: "Bearer " + token,
+          },
+        })
           .then((response) => response.json())
           .catch(() => handleError(domainMsg("associations")));
       }
@@ -97,12 +95,11 @@ export function fetchDomain() {
         );
       } else {
         sourcesPromise = fetch(SOURCES_URL, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Authorization': 'Bearer ' + token
-          }
-          }
-          )
+            Authorization: "Bearer " + token,
+          },
+        })
           .then((response) => response.json())
           .catch(() => handleError(domainMsg("sources")));
       }
@@ -454,5 +451,22 @@ export const REHYDRATE_STATE = "REHYDRATE_STATE";
 export function rehydrateState() {
   return {
     type: REHYDRATE_STATE,
+  };
+}
+
+export const UPDATE_CURRENT_ARTILLERY = "UPDATE_CURRENT_ARTILLERY";
+export function updateCurrentArtillery(currentArtillery) {
+  return {
+    type: UPDATE_CURRENT_ARTILLERY,
+    currentArtillery: currentArtillery,
+  };
+}
+
+export const UPDATE_CURRENT_MILITARY_POSITIONS =
+  "UPDATE_CURRENT_MILITARY_POSITIONS";
+export function updateCurrentMilitaryPositions(updateCurrentMilitaryPositions) {
+  return {
+    type: UPDATE_CURRENT_MILITARY_POSITIONS,
+    currentMilitaryPositions: updateCurrentMilitaryPositions,
   };
 }

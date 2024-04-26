@@ -70,7 +70,6 @@ class Dashboard extends Component {
 
   handleMilitarySelect(selected) {
     // this.props.actions.updateSelected(matchedEvents);
-
   }
 
   handleSelect(selected, axis) {

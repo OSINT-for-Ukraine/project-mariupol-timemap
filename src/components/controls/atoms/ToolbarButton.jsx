@@ -1,12 +1,18 @@
-export function ToolbarButton({ isActive, iconKey, onClick, label }) {
+export function ToolbarButton({ isActive, iconKey, onClick, label, children }) {
   return (
     <div
       className={isActive ? "toolbar-tab active" : "toolbar-tab"}
       key={iconKey}
       onClick={onClick}
     >
-      <i className="material-icons">{iconKey}</i>
-      <div className="tab-caption">{label}</div>
+      {children ? (
+        children
+      ) : (
+        <>
+          <i className="material-icons">{iconKey}</i>
+          <div className="tab-caption">{label}</div>
+        </>
+      )}
     </div>
   );
 }

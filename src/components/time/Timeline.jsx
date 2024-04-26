@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 import { scaleTime, timeMinute, timeSecond } from "d3";
 import hash from "object-hash";
 
-import { setLoading, setNotLoading, updateTicks } from "../../actions";
+import {
+  setLoading,
+  setNotLoading,
+  updateCurrentMilitaryPositions,
+  updateTicks,
+} from "../../actions";
 import * as selectors from "../../selectors";
 import copy from "../../common/data/copy.json";
 
@@ -16,6 +21,15 @@ import ZoomControls from "./atoms/ZoomControls";
 import Markers from "./atoms/Markers";
 import Events from "./atoms/Events";
 import Categories from "./Categories";
+import { fetchMilitaryData } from "../../actions/index";
+
+const formatDate = (date) => {
+  const initialDate = new Date(date);
+
+  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+
+  return initialDate.toLocaleDateString("en-US", options).replace(/\//g, "-");
+};
 
 class Timeline extends Component {
   constructor(props) {
@@ -349,7 +363,7 @@ class Timeline extends Component {
     return [null, null];
   }
 
-  onSelect(event) {
+  async onSelect(event) {
     if (this.props.features.ZOOM_TO_TIMEFRAME_ON_TIMELINE_CLICK) {
       const timeframe = Math.floor(
         this.props.features.ZOOM_TO_TIMEFRAME_ON_TIMELINE_CLICK / 2
@@ -360,6 +374,12 @@ class Timeline extends Component {
       this.props.methods.onUpdateTimerange([start, end]);
     }
     this.props.methods.onSelect(event);
+
+    const formattedDate = formatDate(event.datetime);
+
+    const data = await fetchMilitaryData(formattedDate);
+
+    this.props.actions.updateCurrentMilitaryPositions(data);
   }
 
   render() {
@@ -378,7 +398,12 @@ class Timeline extends Component {
     );
 
     return (
-      <div className={classes} onKeyDown={this.props.onKeyDown} tabIndex="1">
+      <div
+        id="timeline-wrapper"
+        className={classes}
+        onKeyDown={this.props.onKeyDown}
+        tabIndex="1"
+      >
         <Header
           title={title}
           from={this.state.timerange[0]}
@@ -499,6 +524,7 @@ function mapStateToProps(state) {
       language: state.app.language,
       narrative: state.app.associations.narrative,
       coloringSet: state.app.associations.coloringSet,
+      currentMilitaryPositions: state.app.currentMilitaryPositions,
       timeline: {
         zoomLevels: state.app.timeline.zoomLevels,
         dimensions: selectors.selectDimensions(state),
@@ -520,7 +546,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
-      { setLoading, setNotLoading, updateTicks },
+      {
+        setLoading,
+        setNotLoading,
+        updateTicks,
+        updateCurrentMilitaryPositions,
+      },
       dispatch
     ),
   };

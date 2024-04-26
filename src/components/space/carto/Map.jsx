@@ -29,6 +29,7 @@ import {
   isLongitude,
   calculateTotalClusterPoints,
   calcClusterSize,
+  displayRangeInKm,
 } from "../../../common/utilities";
 
 // NB: important constants for map, TODO: make statics
@@ -54,6 +55,8 @@ class Map extends Component {
       clusters: [],
     };
     this.styleLocation = this.styleLocation.bind(this);
+    this.circle = null;
+    this.circleCenter = null;
   }
 
   componentDidMount() {
@@ -164,6 +167,32 @@ class Map extends Component {
     map.keyboard.disable();
     map.zoomControl.remove();
 
+    map.on("click", (e) => {
+      if (this.circle) {
+        map.removeLayer(this.circle);
+        map.removeLayer(this.circleCenter);
+      }
+      if (this.props.app.currentArtillery) {
+        const { range } = this.props.app.currentArtillery;
+        const center = Object.values(e.latlng);
+        this.circle = L.circle(Object.values(center), {
+          color: "red",
+          fillColor: "transparent",
+          radius: range || 0,
+        }).addTo(map);
+
+        const circleIcon = L.icon({
+          iconUrl: "artillery.png",
+          iconSize: [20, 20],
+        });
+
+        this.circleCenter = L.marker(center, { icon: circleIcon }).addTo(map);
+      } else {
+        this.circle = null;
+        this.circleCenter = null;
+      }
+    });
+
     map.on("moveend", () => {
       this.alignLayers();
       this.updateClusters();
@@ -186,6 +215,7 @@ class Map extends Component {
       if (this.svgRef.current !== null)
         this.svgRef.current.classList.remove("hide");
     });
+
     window.addEventListener("resize", () => {
       this.alignLayers();
     });
@@ -446,6 +476,10 @@ class Map extends Component {
         coloringSet={this.props.app.coloringSet}
         filterColors={this.props.ui.filterColors}
         features={this.props.features}
+        currentMilitaryPositions={this.props.app.currentMilitaryPositions}
+        setCurrentMilitaryPositions={(militaryPositions) =>
+          this.props.actions.updateCurrentMilitaryPositions(militaryPositions)
+        }
       />
     );
   }
@@ -517,6 +551,30 @@ class Map extends Component {
     );
   }
 
+  renderCurrentArtillery() {
+    const handleClick = () => {
+      this.props.actions.updateCurrentArtillery(null);
+      if (this.circle) {
+        this.map.removeLayer(this.circle);
+      }
+    };
+    return (
+      <Portal node={document.getElementById("timeline-wrapper")}>
+        <div className="current-artillery-presentation">
+          <p>
+            Showing &nbsp; <span>{this.props.app.currentArtillery.title} </span>
+            &nbsp; artillery of &nbsp;
+            <span>
+              {displayRangeInKm(this.props.app.currentArtillery.range)}
+            </span>
+            &nbsp; range
+          </p>
+          <button onClick={handleClick}>X</button>
+        </div>
+      </Portal>
+    );
+  }
+
   render() {
     const { isShowingSites, isFetchingDomain } = this.props.app.flags;
     const checkMobile = isMobileOnly || window.innerWidth < 600;
@@ -535,6 +593,7 @@ class Map extends Component {
         {this.renderEvents()}
         {this.renderClusters()}
         {this.renderSelected()}
+        {this.props.app.currentArtillery ? this.renderCurrentArtillery() : null}
       </>
     ) : null;
 
@@ -569,6 +628,8 @@ function mapStateToProps(state) {
     },
     app: {
       views: state.app.associations.views,
+      currentArtillery: state.app.currentArtillery,
+      currentMilitaryPositions: state.app.currentMilitaryPositions,
       selected: selectors.selectSelected(state),
       highlighted: state.app.highlighted,
       map: state.app.map,

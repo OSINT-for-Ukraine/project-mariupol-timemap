@@ -37,6 +37,18 @@ const initial = {
     shapes: [],
     regions: [],
     notifications: [],
+    artilleries: [
+      {
+        id: 1,
+        title: "C-300",
+        range: 200000,
+      },
+      {
+        id: 2,
+        title: "Patriot",
+        range: 20000,
+      },
+    ],
   },
 
   /*
@@ -146,8 +158,16 @@ const initial = {
           title: copy[language].toolbar.download.panel.title,
           description: copy[language].toolbar.download.panel.description,
         },
+        artillery: {
+          icon: DEFAULT_TAB_ICONS.ARTILLERY,
+          label: copy[language].toolbar.artillery.button,
+          title: copy[language].toolbar.artillery.title,
+          description: copy[language].toolbar.artillery.description,
+        },
       },
     },
+    currentArtillery: null,
+    currentMilitaryPositions: null,
     loading: false,
   },
 
