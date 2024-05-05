@@ -1,9 +1,9 @@
 const one_day = 1440;
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 const api_url = import.meta.env.VITE_API_URL;
-console.log(import.meta.env.VITE_API_URL);
+
 const config = {
   title: "Project Mariupol",
   display_title: "Project Mariupol",
