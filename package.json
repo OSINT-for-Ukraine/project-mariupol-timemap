@@ -44,7 +44,8 @@
     "screenfull": "^6.0.2",
     "scriptjs": "^2.5.9",
     "supercluster": "^7.1.5",
-    "video-react": "^0.16.0"
+    "video-react": "^0.16.0",
+    "vite-plugin-compression": "^0.5.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.6",

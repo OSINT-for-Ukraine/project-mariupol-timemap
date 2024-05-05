@@ -1,6 +1,6 @@
 const one_day = 1440;
 
-const api_url = import.meta.env.VITE_API_URL;
+const api_url = "/api/";
 
 const config = {
   title: "Project Mariupol",
