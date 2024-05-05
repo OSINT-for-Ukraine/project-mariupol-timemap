@@ -54,7 +54,7 @@ const initial = {
       {id: 14, title: "9K515 Tornado-S", range: 120000},
       {id: 15, title: "9K79-1 Tochka-U", range: 120000},
       {id: 16, title: "9K720 Iskander", range: 500000},
-      {id: 17, title: "S-300", range: 150000}
+      {id: 17, title: "S-300", range: 150000},
     ]
   },
 
