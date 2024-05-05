@@ -1,8 +1,7 @@
 const one_day = 1440;
-import { loadEnv } from 'vite';
+require('dotenv').config();
 
-const env = loadEnv(process.cwd());
-const api_url = env.VITE_API_URL;
+const api_url = process.env.VITE_API_URL;
 
 const config = {
   title: "Project Mariupol",
