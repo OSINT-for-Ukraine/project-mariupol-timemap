@@ -16,6 +16,9 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'build',
       sourcemap: true,
+      rollupOptions: {
+        external: ['fsevents']
+      }
     },
     server: {
       proxy: {
