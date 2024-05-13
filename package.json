@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "serve": "serve build",
     "preview": "vite preview",
     "dev:wsl": "vite --host",
     "test": "vitest",
@@ -43,6 +44,7 @@
     "reselect": "^4.1.7",
     "screenfull": "^6.0.2",
     "scriptjs": "^2.5.9",
+    "serve": "^14.2.3",
     "supercluster": "^7.1.5",
     "video-react": "^0.16.0",
     "vite-plugin-compression": "^0.5.1"
