@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "serve build",
+    "serve": "serve build -p 8080",
     "preview": "vite preview",
     "dev:wsl": "vite --host",
     "test": "vitest",
