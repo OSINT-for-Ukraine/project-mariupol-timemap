@@ -84,8 +84,7 @@ export const selectTimeRange = createSelector(
     } else if (Array.isArray(initialRange) && initialRange.length === 2) {
       [start, end] = initialRange;
     } else {
-      end = new Date();
-      start = new Date(end.getTime() - initialDaysShown * 24 * 60 * 60 * 1000);
+      return [new Date(2022, 1, 1), new Date(2024, 1, 15)];
     }
 
     return [new Date(start), new Date(end)];
